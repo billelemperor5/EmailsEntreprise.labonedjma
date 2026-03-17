@@ -25,6 +25,7 @@ let companyEmails = [
     { unit: "El Oued", name: "-", poste: "Secrétariat El Oued", mail: "eloued.assistante@labo-nedjma.com", status: "Active" },
     { unit: "El Oued", name: "-", poste: "Gestionnaire de stock El Oued", mail: "gestionnaire.eloued@labo-nedjma.com", status: "Active" },
 
+
     // Larbâa Unit
     { unit: "Larbâa", name: "Email Reclamation IT Support", poste: "Support IT", mail: "it.support@labo-nedjma.com", status: "Bloquée" },
     { unit: "Larbâa", name: "Support Insidjam", poste: "Support Insidjam", mail: "support@labo-nedjma.com", status: "Active" },
@@ -103,6 +104,7 @@ let companyEmails = [
     { unit: "Larbâa", name: "RAHLI BADREDDINE", poste: "HSE", mail: "rahali.badreddine@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "kaloune malek", poste: "HSE", mail: "kaloune.malek@labo-nedjma.com", status: "Active" },
 
+
     // Oued Smar Unit
     { unit: "Oued Smar", name: "Yasmine NOUASRI", poste: "assistant rh", mail: "nouasri.yasmine@labo-nedjma.com", status: "Active" },
     { unit: "Oued Smar", name: "Faycel THAMER", poste: "superviseur des ventes alger", mail: "thamer.faycel@labo-nedjma.com", status: "Active" },
@@ -178,25 +180,41 @@ function showDashboard(mode) {
     mainNav.classList.remove('hidden');
     headerRight.classList.add('hidden');
 
+    const directoryContainer = document.querySelector('#mainDashboard > .app-container');
+    const recentEmailsCard = document.getElementById('recentEmailsCard');
+    const filterServicesCard = document.getElementById('filterServicesCard');
+
     if (mode === 'directory') {
-        searchInput.value = ''; // Clear search when entering full directory
+        searchInput.value = '';
         heroSection.classList.remove('hidden');
-        document.querySelector('.app-container').classList.remove('hidden');
+        if (directoryContainer) directoryContainer.classList.remove('hidden');
         analyticsDashboard.classList.add('hidden');
         databaseDashboard.classList.add('hidden');
+        if (recentEmailsCard) recentEmailsCard.classList.add('hidden'); // Hidden in main directory
+        if (filterServicesCard) filterServicesCard.classList.remove('hidden');
         renderEmails(companyEmails);
     } else if (mode === 'stats') {
         heroSection.classList.add('hidden');
-        document.querySelector('.app-container').classList.add('hidden');
+        if (directoryContainer) directoryContainer.classList.add('hidden');
         analyticsDashboard.classList.remove('hidden');
         databaseDashboard.classList.add('hidden');
+        if (recentEmailsCard) recentEmailsCard.classList.add('hidden');
+        if (filterServicesCard) filterServicesCard.classList.add('hidden');
         renderUnitStats();
     } else if (mode === 'database') {
         heroSection.classList.add('hidden');
-        document.querySelector('.app-container').classList.add('hidden');
+        if (directoryContainer) directoryContainer.classList.add('hidden');
         analyticsDashboard.classList.add('hidden');
         databaseDashboard.classList.remove('hidden');
+        if (recentEmailsCard) recentEmailsCard.classList.add('hidden');
+        if (filterServicesCard) filterServicesCard.classList.add('hidden');
         renderArchiveLog();
+    }
+
+    // Refresh the container reference in case of DOM updates
+    const currentRecentContainer = document.getElementById('recentEmailsContainer');
+    if (currentRecentContainer) {
+        window.recentEmailsContainer = currentRecentContainer;
     }
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -246,8 +264,10 @@ function renderEmails(emails) {
 
 // Function to render recent emails sidebar
 function renderRecent(emails) {
-    recentEmailsContainer.innerHTML = '';
-    // Use the provided list (could be filtered) and take the last 5
+    const container = document.getElementById('recentEmailsContainer');
+    if (!container) return;
+    container.innerHTML = '';
+
     const listToRender = emails || companyEmails;
     const recentItems = [...listToRender].reverse().slice(0, 5);
 
@@ -260,7 +280,7 @@ function renderRecent(emails) {
         </div>
       </div>
     `;
-        recentEmailsContainer.innerHTML += recentCard;
+        container.innerHTML += recentCard;
     });
 }
 
@@ -284,7 +304,8 @@ searchInput.addEventListener('input', (e) => {
         item.name.toLowerCase().includes(term) ||
         item.mail.toLowerCase().includes(term) ||
         item.unit.toLowerCase().includes(term) ||
-        item.poste.toLowerCase().includes(term)
+        item.poste.toLowerCase().includes(term) ||
+        item.status.toLowerCase().includes(term)
     );
     renderEmails(filtered);
     renderRecent(filtered);
@@ -301,7 +322,8 @@ copyActiveBtn.addEventListener('click', () => {
             const matchesSearch = item.name.toLowerCase().includes(term) ||
                 item.mail.toLowerCase().includes(term) ||
                 item.unit.toLowerCase().includes(term) ||
-                item.poste.toLowerCase().includes(term);
+                item.poste.toLowerCase().includes(term) ||
+                item.status.toLowerCase().includes(term);
             return matchesSearch && item.status === 'Active';
         })
         .map(item => item.mail)
@@ -321,6 +343,19 @@ copyActiveBtn.addEventListener('click', () => {
         }
     }
 });
+
+function filterBy(type) {
+    const searchInput = document.getElementById('searchInput');
+    if (type === 'corporate') {
+        searchInput.value = '@labo-nedjma.com';
+    } else if (type === 'active') {
+        searchInput.value = 'Active';
+    }
+    // Trigger the search logic
+    searchInput.dispatchEvent(new Event('input'));
+    // Smooth scroll to table
+    document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth' });
+}
 
 function copyFallback(text, count) {
     const textArea = document.createElement("textarea");
@@ -412,6 +447,15 @@ function viewUnitDetails(unit) {
     if (dashboardContext) {
         dashboardContext.innerText = `Affichage des emails pour l'unité : ${unit}`;
     }
+
+    // Specifically hide filter services when viewing from unit context
+    const filterServicesCard = document.getElementById('filterServicesCard');
+    if (filterServicesCard) filterServicesCard.classList.add('hidden');
+
+    // Specifically show recent emails when viewing from unit context
+    const recentEmailsCard = document.getElementById('recentEmailsCard');
+    if (recentEmailsCard) recentEmailsCard.classList.remove('hidden');
+
     const event = new Event('input');
     searchInput.dispatchEvent(event);
 }
