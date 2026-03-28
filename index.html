@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Labo Nedjma - Système de Gestion des Emails</title>
+  <meta name="description" content="Système professionnel de gestion et de suivi des emails d'entreprise Labo Nedjma">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- ===================== SPLASH SCREEN ===================== -->
+  <div id="splashScreen" class="splash-screen">
+    <div class="splash-content">
+      <!-- Animated ring around logo -->
+      <div class="splash-logo-wrapper">
+        <div class="splash-ring"></div>
+        <div class="splash-ring ring-2"></div>
+        <div class="splash-logo-container">
+          <img src="assets/logo.png" alt="Labo Nedjma" class="splash-logo">
+        </div>
+      </div>
+
+      <!-- System title -->
+      <div class="splash-text">
+        <h1 class="splash-company">LABO NEDJMA</h1>
+        <div class="splash-divider"></div>
+        <p class="splash-system">Système de Gestion des Emails</p>
+        <span class="splash-version">v2.0 — Enterprise Edition</span>
+      </div>
+
+      <!-- Loading bar -->
+      <div class="splash-loader">
+        <div class="splash-loader-track">
+          <div class="splash-loader-fill"></div>
+        </div>
+        <span class="splash-loader-text">Initialisation du système...</span>
+      </div>
+
+      <!-- Developer credit -->
+      <div class="splash-credit">
+        <span>Par</span>
+        <span class="splash-dev-name">Dev. Billel Bouraba</span>
+      </div>
+    </div>
+
+    <!-- Background particles -->
+    <div class="splash-particles">
+      <div class="particle p1"></div>
+      <div class="particle p2"></div>
+      <div class="particle p3"></div>
+      <div class="particle p4"></div>
+      <div class="particle p5"></div>
+      <div class="particle p6"></div>
+    </div>
+  </div>
+
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <img src="assets/logo.png" alt="Labo Nedjma Logo">
+        <div class="sidebar-brand">
+          <span class="brand-name">LABO NEDJMA</span>
+          <span class="brand-tag">EMAIL SYSTEM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <span class="sidebar-label">VUE D'ENSEMBLE</span>
+      <a href="#" class="sidebar-link active" data-page="dashboard" id="navDashboard">
+        <i class="fas fa-th-large"></i>
+        <span>Tableau de Bord</span>
+      </a>
+    </div>
+
+    <div class="sidebar-section">
+      <span class="sidebar-label">GESTION & OPÉRATIONS</span>
+      <a href="#" class="sidebar-link" data-page="directory" id="navDirectory">
+        <i class="fas fa-envelope-open-text"></i>
+        <span>Répertoire Emails</span>
+      </a>
+      <a href="#" class="sidebar-link" data-page="stats" id="navStats">
+        <i class="fas fa-chart-pie"></i>
+        <span>Unités & Statistiques</span>
+      </a>
+      <a href="#" class="sidebar-link" data-page="tools" id="navTools">
+        <i class="fas fa-cogs"></i>
+        <span>Ressources & Outils</span>
+      </a>
+      <a href="#" class="sidebar-link" data-page="database" id="navDatabase">
+        <i class="fas fa-database"></i>
+        <span>Base de Données</span>
+      </a>
+    </div>
+
+    <div class="sidebar-section">
+      <span class="sidebar-label">SYSTÈME</span>
+      <a href="#" class="sidebar-link" id="navAbout">
+        <i class="fas fa-user-shield"></i>
+        <span>Développeur</span>
+      </a>
+      <a href="#" class="sidebar-link" id="navCompany">
+        <i class="fas fa-building"></i>
+        <span>Labo Nedjma</span>
+      </a>
+    </div>
+
+
+  </aside>
+
+  <!-- Main Content Wrapper -->
+  <div class="main-wrapper">
+    <!-- Top Header Bar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="sidebar-toggle" id="sidebarToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="topbar-title">
+          <h1 id="pageTitle">TABLEAU DE <span class="accent">BORD</span></h1>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <div class="topbar-search" id="topbarSearch" style="display:none;">
+          <i class="fas fa-search"></i>
+          <input type="text" id="searchInput" placeholder="Rechercher un email, nom, unité...">
+        </div>
+
+        <div class="topbar-status">
+          <span class="status-badge online">
+            <span class="status-pulse"></span>
+            EN LIGNE
+          </span>
+        </div>
+
+        <button class="topbar-icon-btn" onclick="location.reload()" title="Rafraîchir">
+          <i class="fas fa-arrows-rotate"></i>
+        </button>
+
+        <div class="topbar-user" id="infoBtn">
+          <div class="topbar-user-avatar">
+            <img src="assets/support-profile.jpg" alt="Billel Bouraba">
+          </div>
+          <div class="topbar-user-info">
+            <span class="topbar-user-name">Billel Bouraba</span>
+            <span class="topbar-user-role">ADMIN</span>
+          </div>
+          <i class="fas fa-chevron-down" style="font-size: 0.7rem; color: #94a3b8;"></i>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Content Area -->
+    <div class="page-content">
+
+      <!-- ===================== DASHBOARD PAGE ===================== -->
+      <div id="pageDashboard" class="page-section active">
+        <!-- Welcome Banner -->
+        <div class="welcome-banner">
+          <!-- Decorative floating shapes -->
+          <div class="banner-decor">
+            <div class="decor-circle d1"></div>
+            <div class="decor-circle d2"></div>
+            <div class="decor-circle d3"></div>
+            <div class="decor-dot dot1"></div>
+            <div class="decor-dot dot2"></div>
+            <div class="decor-dot dot3"></div>
+            <div class="decor-dot dot4"></div>
+          </div>
+
+          <div class="welcome-text">
+            <div class="system-status-tag">
+              <span class="status-pulse-sm"></span>
+              SYSTÈME OPÉRATIONNEL
+            </div>
+            <h2>Bienvenue sur le portail,</h2>
+            <h2 class="welcome-accent">Labo Nedjma</h2>
+            <p>Système intelligent de gestion et de suivi des emails d'entreprise.
+              Consultez les statistiques, gérez le répertoire et exportez vos données.</p>
+            <div class="welcome-actions">
+              <button class="btn-primary" onclick="navigateTo('directory')">
+                <i class="fas fa-envelope-open-text"></i>
+                Accéder au Répertoire
+              </button>
+              <button class="btn-outline" onclick="navigateTo('stats')">
+                <i class="fas fa-chart-pie"></i>
+                Voir les Statistiques
+              </button>
+            </div>
+          </div>
+
+          <!-- Premium Logo Card Section -->
+          <div class="welcome-avatar-section">
+            <div class="avatar-glow"></div>
+            <div class="avatar-card-outer">
+              <div class="avatar-card-inner">
+                <img src="assets/logo-banner.png" alt="Labo Nedjma" class="avatar-logo-img">
+              </div>
+            </div>
+            <div class="avatar-badges">
+              <div class="mini-badge blue-mini" title="132 Emails" id="bannerTotalWrap">
+                <i class="fas fa-envelope"></i>
+                <span id="bannerTotalEmails">132</span>
+              </div>
+              <div class="mini-badge green-mini" title="119 Actifs" id="bannerActiveWrap">
+                <i class="fas fa-check-circle"></i>
+                <span id="bannerActiveEmails">119</span>
+              </div>
+              <div class="mini-badge orange-mini" title="5 Unités" id="bannerUnitsWrap">
+                <i class="fas fa-building"></i>
+                <span id="bannerTotalUnits">5</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats Overview Cards -->
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-card-icon blue">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="stat-card-info">
+              <span class="stat-card-label">TOTAL EMAILS</span>
+              <span class="stat-card-value" id="dashTotalEmails">0</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon green">
+              <i class="fas fa-circle-check"></i>
+            </div>
+            <div class="stat-card-info">
+              <span class="stat-card-label">EMAILS ACTIFS</span>
+              <span class="stat-card-value" id="dashActiveEmails">0</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon red">
+              <i class="fas fa-circle-xmark"></i>
+            </div>
+            <div class="stat-card-info">
+              <span class="stat-card-label">EMAILS BLOQUÉS</span>
+              <span class="stat-card-value" id="dashBlockedEmails">0</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon orange">
+              <i class="fas fa-building"></i>
+            </div>
+            <div class="stat-card-info">
+              <span class="stat-card-label">UNITÉS</span>
+              <span class="stat-card-value" id="dashUnitsCount">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Access Modules -->
+        <div class="section-header">
+          <span class="section-line"></span>
+          <span class="section-title">MODULES RAPIDES</span>
+          <span class="section-line"></span>
+        </div>
+
+        <div class="module-grid">
+          <div class="module-card" onclick="navigateTo('directory')">
+            <div class="module-icon blue">
+              <i class="fas fa-address-book"></i>
+            </div>
+            <span class="module-tag blue-tag">RÉPERTOIRE</span>
+            <h3>Répertoire des Emails</h3>
+            <p>Consultez et recherchez toutes les adresses email de l'entreprise Labo Nedjma.</p>
+            <a class="module-link blue-link">ACCÉDER <i class="fas fa-arrow-right"></i></a>
+          </div>
+
+          <div class="module-card" onclick="navigateTo('stats')">
+            <div class="module-icon orange">
+              <i class="fas fa-chart-bar"></i>
+            </div>
+            <span class="module-tag orange-tag">ANALYTIQUE</span>
+            <h3>Unités & Statistiques</h3>
+            <p>Analysez la répartition des emails par filiale et consultez les indicateurs de performance.</p>
+            <a class="module-link orange-link">VOIR RAPPORT <i class="fas fa-arrow-right"></i></a>
+          </div>
+
+          <div class="module-card" onclick="navigateTo('tools')">
+            <div class="module-icon purple">
+              <i class="fas fa-cogs"></i>
+            </div>
+            <span class="module-tag purple-tag">SERVICES</span>
+            <h3>Ressources & Outils</h3>
+            <p>Programmes, services et guides d'installation pour le système de messagerie d'entreprise.</p>
+            <a class="module-link purple-link">CONFIGURER <i class="fas fa-arrow-right"></i></a>
+          </div>
+
+          <div class="module-card" onclick="navigateTo('database')">
+            <div class="module-icon green">
+              <i class="fas fa-server"></i>
+            </div>
+            <span class="module-tag green-tag">DONNÉES</span>
+            <h3>Centre de Données</h3>
+            <p>Exportez les données au format Excel et consultez l'historique des modifications système.</p>
+            <a class="module-link green-link">EXPLORER <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================== DIRECTORY PAGE ===================== -->
+      <div id="pageDirectory" class="page-section">
+        <div class="page-banner">
+          <div class="page-banner-content">
+            <h2><i class="fas fa-envelope-open-text"></i> RÉPERTOIRE <span class="accent">DES EMAILS</span></h2>
+            <p>Base de données complète des adresses email de l'entreprise</p>
+          </div>
+        </div>
+
+        <div class="directory-layout">
+          <!-- Sidebar Panel -->
+          <div class="dir-sidebar">
+            <!-- Filter Card -->
+            <div class="panel-card">
+              <h4><i class="fas fa-filter"></i> Filtres Rapides</h4>
+              <div class="filter-list">
+                <button class="filter-btn" onclick="filterBy('all')">
+                  <div class="filter-icon all"><i class="fas fa-list"></i></div>
+                  <div class="filter-text">
+                    <span>Tous les Emails</span>
+                    <small>Afficher tout le répertoire</small>
+                  </div>
+                </button>
+                <button class="filter-btn" onclick="filterBy('active')">
+                  <div class="filter-icon active"><i class="fas fa-user-check"></i></div>
+                  <div class="filter-text">
+                    <span>Collaborateurs Actifs</span>
+                    <small>Comptes opérationnels</small>
+                  </div>
+                </button>
+                <button class="filter-btn" onclick="filterBy('blocked')">
+                  <div class="filter-icon blocked"><i class="fas fa-user-lock"></i></div>
+                  <div class="filter-text">
+                    <span>Comptes Bloqués</span>
+                    <small>Emails désactivés</small>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <!-- Quick Stats Card -->
+            <div class="panel-card">
+              <h4><i class="fas fa-chart-simple"></i> Aperçu Rapide</h4>
+              <div class="quick-stat-row">
+                <span>Total Emails</span>
+                <strong id="totalCount">0</strong>
+              </div>
+              <div class="quick-stat-row">
+                <span>Actifs</span>
+                <strong id="activeCount" class="text-green">0</strong>
+              </div>
+              <div class="quick-stat-row">
+                <span>Bloqués</span>
+                <strong id="blockedCount" class="text-red">0</strong>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" id="progressBar"></div>
+              </div>
+              <div class="progress-label">
+                <span>Taux d'activation</span>
+                <span id="activationRate">0%</span>
+              </div>
+            </div>
+
+            <!-- Recent Emails -->
+            <div class="panel-card">
+              <h4><i class="fas fa-clock-rotate-left"></i> Derniers Ajouts</h4>
+              <div id="recentEmailsContainer">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Main Table Area -->
+          <div class="dir-main">
+            <div class="table-card">
+              <div class="table-header">
+                <h3><i class="fas fa-table-list"></i> Liste Complète</h3>
+                <button class="btn-copy" id="copyActiveBtn">
+                  <i class="fas fa-copy"></i>
+                  Copier Emails Actifs
+                </button>
+              </div>
+              <div class="table-container">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 50px;">N°</th>
+                      <th>Unité</th>
+                      <th>Nom et Prénom</th>
+                      <th>Poste</th>
+                      <th>Adresse Email</th>
+                      <th>Statut</th>
+                    </tr>
+                  </thead>
+                  <tbody id="emailList"></tbody>
+                </table>
+              </div>
+              <!-- Pagination -->
+              <div class="pagination-container" id="paginationContainer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================== STATS PAGE ===================== -->
+      <div id="pageStats" class="page-section">
+        <div class="page-banner">
+          <div class="page-banner-content">
+            <h2><i class="fas fa-chart-pie"></i> CLASSIFICATION PAR <span class="accent">UNITÉS</span></h2>
+            <p>Vue d'ensemble des ressources numériques par filiale</p>
+          </div>
+        </div>
+
+        <div id="unitCardsGrid" class="units-grid"></div>
+      </div>
+
+      <!-- ===================== TOOLS PAGE ===================== -->
+      <div id="pageTools" class="page-section">
+        <div class="page-banner">
+          <div class="page-banner-content">
+            <h2><i class="fas fa-cogs"></i> RESSOURCES & <span class="accent">OUTILS</span></h2>
+            <p>Programmes, services et guides de configuration pour le système de messagerie Labo Nedjma</p>
+          </div>
+        </div>
+
+        <div class="tools-grid">
+          <!-- Tool Card 1 -->
+          <div class="tool-card" data-color="blue">
+            <div class="tool-card-stripe"></div>
+            <div class="tool-card-decor"></div>
+            <div class="tool-card-dot"></div>
+            <div class="tool-card-header">
+              <div class="tool-icon-box blue">
+                <i class="fas fa-envelope-circle-check"></i>
+              </div>
+              <span class="tool-badge blue-badge">CONFIGURATION</span>
+            </div>
+            <h3>Configuration Email</h3>
+            <p>Guide complet pour configurer les clients de messagerie (Outlook, Thunderbird) avec les paramètres
+              IMAP/SMTP de l'entreprise.</p>
+            <div class="tool-card-footer">
+              <span class="tool-status"><i class="fas fa-circle"></i> Disponible</span>
+              <button class="tool-btn blue-btn" onclick="openToolDetail('config')">Ouvrir <i
+                  class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- Tool Card 2 -->
+          <div class="tool-card" data-color="orange">
+            <div class="tool-card-stripe"></div>
+            <div class="tool-card-decor"></div>
+            <div class="tool-card-dot"></div>
+            <div class="tool-card-header">
+              <div class="tool-icon-box orange">
+                <i class="fas fa-mobile-screen-button"></i>
+              </div>
+              <span class="tool-badge orange-badge">APPLICATION MOBILE</span>
+            </div>
+            <h3>Carbonio Mail — Mobile</h3>
+            <p>Téléchargez et configurez l'application officielle Carbonio Mail sur votre smartphone (Android & iOS)
+              pour accéder à votre messagerie professionnelle.</p>
+            <div class="tool-card-footer">
+              <span class="tool-status"><i class="fas fa-circle"></i> Disponible</span>
+              <button class="tool-btn orange-btn" onclick="openToolDetail('install')">Ouvrir <i
+                  class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- Tool Card 3 - Desktop & Web -->
+          <div class="tool-card" data-color="green">
+            <div class="tool-card-stripe"></div>
+            <div class="tool-card-decor"></div>
+            <div class="tool-card-dot"></div>
+            <div class="tool-card-header">
+              <div class="tool-icon-box green">
+                <i class="fas fa-desktop"></i>
+              </div>
+              <span class="tool-badge green-badge">PC & WEB</span>
+            </div>
+            <h3>eM Client & Webmail</h3>
+            <p>Accédez à votre messagerie via le logiciel eM Client (Windows & Mac) ou directement depuis votre
+              navigateur web.</p>
+            <div class="tool-card-footer">
+              <span class="tool-status"><i class="fas fa-circle"></i> Disponible</span>
+              <button class="tool-btn green-btn" onclick="openToolDetail('desktop')">Ouvrir <i
+                  class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- Tool Card 4 -->
+          <div class="tool-card" data-color="purple">
+            <div class="tool-card-stripe"></div>
+            <div class="tool-card-decor"></div>
+            <div class="tool-card-dot"></div>
+            <div class="tool-card-header">
+              <div class="tool-icon-box purple">
+                <i class="fas fa-headset"></i>
+              </div>
+              <span class="tool-badge purple-badge">SUPPORT</span>
+            </div>
+            <h3>Support & Assistance</h3>
+            <p>Centre d'aide, FAQ, et procédures de dépannage pour les problèmes courants du système de messagerie.</p>
+            <div class="tool-card-footer">
+              <span class="tool-status"><i class="fas fa-circle"></i> Disponible</span>
+              <button class="tool-btn purple-btn" onclick="openToolDetail('support')">Ouvrir <i
+                  class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================== DATABASE PAGE ===================== -->
+      <div id="pageDatabase" class="page-section">
+        <div class="page-banner">
+          <div class="page-banner-content">
+            <h2><i class="fas fa-database"></i> CENTRE DE <span class="accent">DONNÉES</span></h2>
+            <p>Exportation sécurisée et suivi des modifications système</p>
+          </div>
+        </div>
+
+        <div class="db-grid">
+          <!-- Last Update Card -->
+          <div class="db-card">
+            <div class="db-card-header">
+              <div class="db-icon blue-bg"><i class="fas fa-calendar-check"></i></div>
+              <h3>Dernière Mise à Jour</h3>
+            </div>
+            <p>Date officielle de la dernière synchronisation globale des données du système.</p>
+            <div class="update-badge" id="lastUpdateDate">27 - 03 - 2026</div>
+          </div>
+
+          <!-- Export Card -->
+          <div class="db-card">
+            <div class="db-card-header">
+              <div class="db-icon green-bg"><i class="fas fa-file-excel"></i></div>
+              <h3>Exportation Master Data</h3>
+            </div>
+            <p>Générez un fichier Excel complet contenant tous les collaborateurs de Labo Nedjma pour Outlook ou la
+              comptabilité.</p>
+            <button class="btn-export" onclick="exportToExcel()">
+              <i class="fas fa-download"></i>
+              Télécharger au format .XLSX
+            </button>
+          </div>
+
+          <!-- System Info Card -->
+          <div class="db-card info-card">
+            <div class="db-card-header">
+              <div class="db-icon purple-bg" style="color: var(--purple);"><i class="fas fa-shield-halved"></i></div>
+              <h3>À Propos du Système</h3>
+            </div>
+            <p>Informations générales et politique de confidentialité.</p>
+
+            <div class="system-info-list"
+              style="margin-top: 15px; display: flex; flex-direction: column; gap: 12px; font-size: 0.85rem;">
+              <div
+                style="background: var(--bg-hover); padding: 12px; border-radius: var(--radius-md); border-left: 3px solid var(--purple);">
+                <strong style="display: block; color: var(--text-dark); margin-bottom: 4px;">Système Email — Labo
+                  Nedjma</strong>
+                <span style="color: var(--text-muted);">Version 2.0 (Édition 2026)</span>
+              </div>
+
+              <div
+                style="background: var(--bg-hover); padding: 12px; border-radius: var(--radius-md); border-left: 3px solid var(--primary);">
+                <strong style="display: block; color: var(--text-dark); margin-bottom: 4px;">Politique de
+                  Confidentialité</strong>
+                <span style="color: var(--text-muted); line-height: 1.4; display: block;">L'accès est strictement
+                  réservé au personnel autorisé. La distribution externe des données est interdite de Labo
+                  Nedjma.</span>
+              </div>
+            </div>
+
+            <div
+              style="margin-top: 15px; font-size: 0.75rem; color: var(--text-light); text-align: center; font-weight: 600;">
+              © 2026 Labo Nedjma. Tous droits réservés.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="copyToast" class="toast">
+    <div class="toast-icon"><i class="fas fa-check"></i></div>
+    <div class="toast-body">
+      <span class="toast-title">Copié avec succès !</span>
+      <span class="toast-msg"><span id="copyCount">0</span> emails prêts pour Outlook</span>
+    </div>
+  </div>
+
+  <!-- Futuristic Developer Profile Modal -->
+  <div id="devModal" class="modal-overlay dev-modal">
+    <div class="modal-box futuristic-dev-box">
+      <button class="modal-close" onclick="closeDevModal()">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="dev-modal-content">
+        <!-- Header / Banner Area -->
+        <div class="dev-banner-hero">
+          <div class="dev-banner-glow"></div>
+          <div class="dev-avatar-showcase">
+            <img src="assets/logobillel.jpg" alt="Billel Bouraba">
+            <div class="dev-avatar-border"></div>
+          </div>
+          <div class="dev-title-block">
+            <h2>Billel Bouraba</h2>
+            <span class="dev-tagline">Expert en Solutions IT & Développement de Systèmes</span>
+            <div class="dev-stats">
+              <span class="dev-stat-item"><i class="fas fa-award"></i> Senior Developer</span>
+              <span class="dev-stat-item"><i class="fas fa-microchip"></i> System Architect</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Body Area -->
+        <div class="dev-body-section">
+          <div class="dev-bio-card">
+            <h4><i class="fas fa-feather-pointed"></i> Ma Mission</h4>
+            <p>Conception et développement de solutions logicielles sur mesure, optimisation d'infrastructures réseaux,
+              et automatisation de processus métiers. Mon objectif est de transformer les défis techniques en
+              opportunités de croissance grâce à l'innovation numérique.</p>
+          </div>
+
+          <div class="dev-skills-section">
+            <h4><i class="fas fa-code"></i> Compétences Clés</h4>
+            <div class="dev-skills-pills">
+              <span class="skill-pill">Full-Stack Dev</span>
+              <span class="skill-pill">UI/UX Design</span>
+              <span class="skill-pill">Network Infrastructure</span>
+              <span class="skill-pill">Database Manager</span>
+              <span class="skill-pill">System Automation</span>
+            </div>
+          </div>
+
+          <div class="dev-contact-footer">
+            <div class="footer-socials">
+              <a href="https://www.facebook.com/billel.bouraba" target="_blank" class="social-link fb-link">
+                <i class="fab fa-facebook"></i> Facebook Profile
+              </a>
+              <a href="https://wa.me/213550129402" target="_blank" class="social-link wa-link">
+                <i class="fab fa-whatsapp"></i> WhatsApp Me
+              </a>
+            </div>
+            <div class="footer-msg">
+              <p>© 2026 Labo Nedjma — Built with Passion and Precision</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Company Information Modal -->
+  <div id="companyModal" class="modal-overlay">
+    <div class="modal-box company-modal-box">
+      <button class="modal-close" onclick="closeCompanyModal()">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="company-modal-header">
+        <img src="assets/labologonedjma.png" alt="Labo Nedjma" class="company-modal-logo">
+        <div class="company-title">
+          <h2>LABO NEDJMA</h2>
+          <p>Laboratoires Cosmétiques</p>
+        </div>
+      </div>
+
+      <div class="company-modal-grid">
+        <!-- Site 1: Siège Social -->
+        <div class="company-info-card">
+          <div class="card-header-accent red-accent"></div>
+          <h3><i class="fas fa-landmark"></i> Siège sociale</h3>
+          <div class="info-list">
+            <div class="info-item">
+              <i class="fas fa-phone"></i>
+              <span>00213 (0) 555 01 01 07</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-envelope"></i>
+              <span>contact@labo-nedjma.com</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-location-dot"></i>
+              <span>Lotissement 4 N°11 Douera, Alger - Algérie</span>
+            </div>
+            <div style="margin-top: 25px; align-self: center;">
+              <a href="https://www.facebook.com/flux.care.labonedjma" target="_blank"
+                style="display: inline-flex; align-items: center; gap: 8px; color: #1877F2; text-decoration: none; font-weight: 600; font-size: 0.85rem; background: rgba(24, 119, 242, 0.1); padding: 8px 18px; border-radius: 20px; transition: all 0.2s ease;"
+                onmouseover="this.style.background='rgba(24, 119, 242, 0.2)'; this.style.transform='translateY(-2px)';"
+                onmouseout="this.style.background='rgba(24, 119, 242, 0.1)'; this.style.transform='translateY(0)';">
+                <i class="fab fa-facebook" style="font-size: 1.1rem;"></i>
+                Flux Care
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Site 2: Direction Commerciale -->
+        <div class="company-info-card">
+          <div class="card-header-accent blue-accent"></div>
+          <h3><i class="fas fa-briefcase"></i> Direction commerciale</h3>
+          <div class="info-list">
+            <div class="info-item">
+              <i class="fas fa-phone-volume"></i>
+              <span>00213 (0) 770 11 21 97</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-phone"></i>
+              <span>00213 (0) 23 92 02 93 / 94</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-print"></i>
+              <span>Fax: 00213 (0) 23 92 02 95</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-at"></i>
+              <span>commercial@labo-nedjma.com</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-map-location-dot"></i>
+              <span>Zone industrielle Oued Semmar</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="company-modal-footer">
+        <p>Qualité & Innovation au service de votre beauté</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile Modal (Admin/General) -->
+  <div id="profileModal" class="modal-overlay">
+    <div class="modal-box">
+      <button class="modal-close" id="closeModal">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="modal-header">
+        <div class="modal-avatar">
+          <div class="avatar-ring"></div>
+          <img src="assets/support-profile.jpg" alt="Billel Bouraba">
+        </div>
+        <div class="modal-title-group">
+          <h2>Billel Bouraba</h2>
+          <span class="modal-badge">IT SUPPORT ENGINEER</span>
+        </div>
+      </div>
+
+      <div class="modal-links-grid">
+        <a href="https://wa.me/213550129402" target="_blank" class="mini-contact-card">
+          <div class="mini-icon wa-icon"><i class="fab fa-whatsapp"></i></div>
+          <div class="mini-text">
+            <span>WhatsApp</span>
+            <small>0550 12 94 02</small>
+          </div>
+        </a>
+        <a href="https://www.facebook.com/billel.bouraba" target="_blank" class="mini-contact-card">
+          <div class="mini-icon fb-icon"><i class="fab fa-facebook-f"></i></div>
+          <div class="mini-text">
+            <span>Facebook</span>
+            <small>Billel Bouraba</small>
+          </div>
+        </a>
+        <a href="mailto:billel.bouraba@labo-nedjma.com" class="mini-contact-card">
+          <div class="mini-icon pro-icon"><i class="fas fa-envelope"></i></div>
+          <div class="mini-text">
+            <span>Professionnel</span>
+            <small>billel.bouraba@labo-nedjma.com</small>
+          </div>
+        </a>
+        <a href="mailto:billel.dadi123@gmail.com" class="mini-contact-card">
+          <div class="mini-icon per-icon"><i class="fas fa-at"></i></div>
+          <div class="mini-text">
+            <span>Personnel</span>
+            <small>billel.dadi123@gmail.com</small>
+          </div>
+        </a>
+      </div>
+
+      <div class="modal-footer-info">
+        <p>Expert en Solutions IT & Développement de Systèmes</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============= SUPPORT MODAL ============= -->
+  <div class="config-modal-overlay" id="supportModal">
+    <div class="config-modal install-modal">
+      <div class="config-modal-header"
+        style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.06), rgba(168, 85, 247, 0.03));">
+        <div class="config-header-left">
+          <div class="config-header-icon" style="background: rgba(139, 92, 246, 0.1); color: var(--purple);">
+            <i class="fas fa-headset"></i>
+          </div>
+          <div>
+            <h2>Billel Bouraba — Labo Nedjma</h2>
+            <p>Help Desk - IT Support</p>
+          </div>
+        </div>
+        <button class="config-close-btn" onclick="closeSupportModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="config-modal-body">
+
+        <!-- Profile Hero -->
+        <div class="support-hero">
+          <div class="support-hero-bg"></div>
+          <div class="support-profile-card">
+            <div class="support-avatar">
+              <img src="assets/support-profile.jpg" alt="IT Support">
+              <span class="support-online-dot"></span>
+            </div>
+            <div class="support-profile-info">
+              <h3>Billel Bouraba — Labo Nedjma</h3>
+              <span class="support-role">Help Desk - IT Support</span>
+              <div class="support-status">
+                <span class="status-dot-online"></span>
+                Disponible — Prêt à vous aider
+              </div>
+            </div>
+          </div>
+          <p class="support-bio">
+            Billel Bouraba, votre responsable IT. Je m'occupe de l'infrastructure, du réseau et du support technique.
+            N'hésitez pas à me contacter pour toute assistance — vous êtes les bienvenus à tout moment.
+          </p>
+        </div>
+
+        <!-- Contact Cards -->
+        <div class="support-contact-section">
+          <h4><i class="fas fa-address-book"></i> Contactez-nous</h4>
+          <div class="support-contact-grid">
+
+            <!-- Email -->
+            <a href="mailto:billel.bouraba@labo-nedjma.com" class="support-contact-card email-card">
+              <div class="contact-card-icon email-icon-bg">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-card-info">
+                <span class="contact-label">Email Professionnel</span>
+                <strong>billel.bouraba@labo-nedjma.com</strong>
+              </div>
+              <i class="fas fa-arrow-right contact-arrow"></i>
+            </a>
+
+            <!-- WhatsApp -->
+            <a href="https://wa.me/213" target="_blank" class="support-contact-card whatsapp-card">
+              <div class="contact-card-icon whatsapp-icon-bg">
+                <i class="fab fa-whatsapp"></i>
+              </div>
+              <div class="contact-card-info">
+                <span class="contact-label">WhatsApp</span>
+                <strong>Discuter sur WhatsApp</strong>
+              </div>
+              <i class="fas fa-arrow-right contact-arrow"></i>
+            </a>
+
+            <!-- Phone -->
+            <a href="tel:+213" class="support-contact-card phone-card">
+              <div class="contact-card-icon phone-icon-bg">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="contact-card-info">
+                <span class="contact-label">Téléphone</span>
+                <strong>Appeler directement</strong>
+              </div>
+              <i class="fas fa-arrow-right contact-arrow"></i>
+            </a>
+
+          </div>
+        </div>
+
+        <!-- Services -->
+        <div class="support-services">
+          <h4><i class="fas fa-cogs"></i> Domaines d'expertise</h4>
+          <div class="services-grid">
+            <div class="service-item">
+              <div class="service-icon" style="background: rgba(249, 115, 22, 0.1); color: var(--primary);">
+                <i class="fas fa-tools"></i>
+              </div>
+              <strong>Solutions</strong>
+              <span>Résolution de problèmes informatiques et logiciels</span>
+            </div>
+            <div class="service-item">
+              <div class="service-icon" style="background: rgba(59, 130, 246, 0.1); color: var(--blue);">
+                <i class="fas fa-wrench"></i>
+              </div>
+              <strong>Maintenance</strong>
+              <span>Entretien préventif et correctif des équipements</span>
+            </div>
+            <div class="service-item">
+              <div class="service-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--green);">
+                <i class="fas fa-network-wired"></i>
+              </div>
+              <strong>Réseau</strong>
+              <span>Configuration et gestion de l'infrastructure réseau</span>
+            </div>
+            <div class="service-item">
+              <div class="service-icon" style="background: rgba(139, 92, 246, 0.1); color: var(--purple);">
+                <i class="fas fa-shield-halved"></i>
+              </div>
+              <strong>Sécurité</strong>
+              <span>Protection des données et cybersécurité</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="config-steps">
+          <h4><i class="fas fa-circle-question"></i> Questions fréquentes</h4>
+          <div class="config-steps-list">
+            <div class="config-step">
+              <div class="step-number"
+                style="background: linear-gradient(135deg, var(--purple), #7c3aed); font-size: 0.7rem;">?</div>
+              <div class="step-content">
+                <strong>J'ai oublié mon mot de passe email</strong>
+                <span>Contactez le support IT pour une réinitialisation sécurisée de votre mot de passe
+                  professionnel.</span>
+              </div>
+            </div>
+            <div class="config-step">
+              <div class="step-number"
+                style="background: linear-gradient(135deg, var(--purple), #7c3aed); font-size: 0.7rem;">?</div>
+              <div class="step-content">
+                <strong>Mon email ne se synchronise pas</strong>
+                <span>Vérifiez votre connexion internet et les paramètres du serveur. Si le problème persiste,
+                  contactez-nous.</span>
+              </div>
+            </div>
+            <div class="config-step">
+              <div class="step-number"
+                style="background: linear-gradient(135deg, var(--purple), #7c3aed); font-size: 0.7rem;">?</div>
+              <div class="step-content">
+                <strong>Comment changer mon mot de passe ?</strong>
+                <span>Pour changer votre mot de passe, veuillez nous contacter directement (Email ou WhatsApp).</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Note -->
+        <div class="config-note" style="background: rgba(139, 92, 246, 0.06); border-color: rgba(139, 92, 246, 0.15);">
+          <div class="config-note-icon" style="color: var(--purple);">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div>
+            <strong style="color: #7c3aed;">Horaires de disponibilité</strong>
+            <p>Le support IT est disponible du <strong>Samedi au Jeudi</strong>, de <strong>08h00 à 16h30</strong>. Je
+              reste également disponible en dehors de ces horaires pour toute assistance urgente.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ============= DESKTOP & WEBMAIL MODAL ============= -->
+  <div class="config-modal-overlay" id="desktopModal">
+    <div class="config-modal install-modal">
+      <div class="config-modal-header"
+        style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(59, 130, 246, 0.03));">
+        <div class="config-header-left">
+          <div class="config-header-icon" style="background: var(--green-bg); color: var(--green);">
+            <i class="fas fa-desktop"></i>
+          </div>
+          <div>
+            <h2>eM Client & Webmail</h2>
+            <p>Accédez à votre messagerie depuis votre ordinateur ou navigateur</p>
+          </div>
+        </div>
+        <button class="config-close-btn" onclick="closeDesktopModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="config-modal-body">
+
+        <!-- ====== SECTION 1: eM Client ====== -->
+        <div class="platform-section">
+          <div class="platform-header em-header">
+            <div class="platform-icon em-icon">
+              <i class="fas fa-laptop"></i>
+            </div>
+            <div>
+              <h3>eM Client — Logiciel Desktop</h3>
+              <span class="platform-subtitle">Client de messagerie professionnel pour Windows & macOS</span>
+            </div>
+          </div>
+
+          <div class="platform-body">
+            <!-- Screenshot -->
+            <div class="platform-screenshot-card">
+              <img src="assets/em-client.png" alt="eM Client Interface">
+              <div class="screenshot-label">
+                <i class="fas fa-expand"></i> Interface eM Client — Vue Inbox
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="config-intro"
+              style="border-color: rgba(16, 185, 129, 0.15); background: rgba(16, 185, 129, 0.04);">
+              <div class="config-intro-icon" style="color: var(--green);">
+                <i class="fas fa-info-circle"></i>
+              </div>
+              <div>
+                <h4 style="color: var(--green);">À propos d'eM Client</h4>
+                <p>eM Client est un logiciel de messagerie moderne et puissant, compatible avec notre serveur
+                  adexcloud.dz. Il offre une interface intuitive avec gestion des emails, calendrier, contacts et tâches
+                  — tout en un.</p>
+              </div>
+            </div>
+
+            <!-- Download -->
+            <div class="app-download-section">
+              <h4><i class="fas fa-download"></i> Télécharger eM Client</h4>
+              <div class="download-buttons">
+                <a href="https://www.emclient.com/" target="_blank" class="store-btn em-windows-btn">
+                  <i class="fab fa-windows"></i>
+                  <div>
+                    <small>Télécharger pour</small>
+                    <strong>Windows</strong>
+                  </div>
+                </a>
+                <a href="https://www.emclient.com/download-mac" target="_blank" class="store-btn em-mac-btn">
+                  <i class="fab fa-apple"></i>
+                  <div>
+                    <small>Télécharger pour</small>
+                    <strong>macOS</strong>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Steps -->
+            <div class="config-steps">
+              <h4><i class="fas fa-list-check"></i> Configuration d'eM Client</h4>
+              <div class="config-steps-list">
+                <div class="config-step">
+                  <div class="step-number" style="background: linear-gradient(135deg, var(--green), #059669);">1</div>
+                  <div class="step-content">
+                    <strong>Téléchargez et installez eM Client</strong>
+                    <span>Rendez-vous sur <code>emclient.com</code> et téléchargez la version adaptée à votre
+                      système.</span>
+                  </div>
+                </div>
+                <div class="config-step">
+                  <div class="step-number" style="background: linear-gradient(135deg, var(--green), #059669);">2</div>
+                  <div class="step-content">
+                    <strong>Ajoutez votre compte email</strong>
+                    <span>Lancez eM Client, cliquez sur <code>Ajouter un compte</code> et entrez votre adresse email
+                      professionnelle.</span>
+                  </div>
+                </div>
+                <div class="config-step">
+                  <div class="step-number" style="background: linear-gradient(135deg, var(--green), #059669);">3</div>
+                  <div class="step-content">
+                    <strong>Configurez les paramètres du serveur</strong>
+                    <span>Si la détection automatique échoue, utilisez les paramètres IMAP/SMTP de la section
+                      <code>Configuration Email</code>.</span>
+                  </div>
+                </div>
+                <div class="config-step">
+                  <div class="step-number" style="background: linear-gradient(135deg, var(--green), #059669);">4</div>
+                  <div class="step-content">
+                    <strong>Profitez de votre messagerie !</strong>
+                    <span>Tous vos emails, contacts et calendrier seront synchronisés automatiquement.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Separator -->
+        <div class="platform-separator">
+          <span>OU</span>
+        </div>
+
+        <!-- ====== SECTION 2: Webmail ====== -->
+        <div class="platform-section">
+          <div class="platform-header web-header">
+            <div class="platform-icon web-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <div>
+              <h3>Webmail — Accès Navigateur</h3>
+              <span class="platform-subtitle">Accédez directement à votre messagerie depuis n'importe quel
+                navigateur</span>
+            </div>
+          </div>
+
+          <div class="platform-body">
+            <!-- Screenshot -->
+            <div class="platform-screenshot-card">
+              <img src="assets/webmail.png" alt="Webmail Labo Nedjma">
+              <div class="screenshot-label">
+                <i class="fas fa-expand"></i> Page de connexion Webmail — Zextras Carbonio
+              </div>
+            </div>
+
+            <!-- URL card -->
+            <div class="webmail-url-card">
+              <div class="url-card-left">
+                <div class="url-icon">
+                  <i class="fas fa-link"></i>
+                </div>
+                <div>
+                  <label>Adresse du Webmail</label>
+                  <a href="https://mail.labo-nedjma.com/static/login/" target="_blank" class="webmail-link">
+                    mail.labo-nedjma.com
+                    <i class="fas fa-external-link-alt"></i>
+                  </a>
+                </div>
+              </div>
+              <a href="https://mail.labo-nedjma.com/static/login/" target="_blank" class="webmail-open-btn">
+                Accéder <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+
+            <!-- Steps -->
+            <div class="config-steps">
+              <h4><i class="fas fa-list-check"></i> Connexion au Webmail</h4>
+              <div class="config-steps-list">
+                <div class="config-step">
+                  <div class="step-number" style="background: linear-gradient(135deg, var(--blue), #2563eb);">1</div>
+                  <div class="step-content">
+                    <strong>Ouvrez votre navigateur</strong>
+                    <span>Utilisez Chrome, Firefox, Edge ou Safari sur votre ordinateur.</span>
+                  </div>
+                </div>
+                <div class="config-step">
+                  <div class="step-number" style="background: linear-gradient(135deg, var(--blue), #2563eb);">2</div>
+                  <div class="step-content">
+                    <strong>Accédez à l'adresse du Webmail</strong>
+                    <span>Tapez <code>mail.labo-nedjma.com</code> dans la barre d'adresse de votre navigateur.</span>
+                  </div>
+                </div>
+                <div class="config-step">
+                  <div class="step-number" style="background: linear-gradient(135deg, var(--blue), #2563eb);">3</div>
+                  <div class="step-content">
+                    <strong>Connectez-vous</strong>
+                    <span>Entrez votre nom d'utilisateur et votre mot de passe, puis cliquez sur
+                      <code>CONNEXION</code>.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Note -->
+            <div class="config-note"
+              style="background: rgba(59, 130, 246, 0.06); border-color: rgba(59, 130, 246, 0.15);">
+              <div class="config-note-icon" style="color: var(--blue);">
+                <i class="fas fa-lightbulb"></i>
+              </div>
+              <div>
+                <strong style="color: var(--blue);">Astuce</strong>
+                <p>Ajoutez <strong>mail.labo-nedjma.com</strong> à vos favoris pour un accès rapide. Le Webmail
+                  fonctionne sur tous les appareils avec un navigateur, sans installation requise.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ============= INSTALL APP MODAL ============= -->
+  <div class="config-modal-overlay" id="installModal">
+    <div class="config-modal install-modal">
+      <div class="config-modal-header install-header">
+        <div class="config-header-left">
+          <div class="app-header-logo">
+            <img src="assets/app-logo.png" alt="Carbonio Mail">
+          </div>
+          <div>
+            <h2>Carbonio Mail</h2>
+            <p>Application officielle de messagerie mobile — adexcloud.dz</p>
+          </div>
+        </div>
+        <button class="config-close-btn" onclick="closeInstallModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="config-modal-body">
+        <!-- App intro -->
+        <div class="app-intro-banner">
+          <div class="app-intro-left">
+            <div class="app-logo-showcase">
+              <img src="assets/app-logo.png" alt="Carbonio Mail">
+            </div>
+            <div class="app-intro-info">
+              <h3>Carbonio Mail</h3>
+              <span class="app-version">Application officielle</span>
+              <div class="app-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <span>4.5</span>
+              </div>
+              <p>L'application mobile officielle pour accéder à votre messagerie professionnelle Labo Nedjma sur
+                smartphone.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Download buttons -->
+        <div class="app-download-section">
+          <h4><i class="fas fa-download"></i> Télécharger l'application</h4>
+          <div class="download-buttons">
+            <a href="https://play.google.com/store/apps/details?id=com.zextras.iris" target="_blank"
+              class="store-btn android-btn">
+              <i class="fab fa-google-play"></i>
+              <div>
+                <small>Télécharger sur</small>
+                <strong>Google Play</strong>
+              </div>
+            </a>
+            <a href="https://apps.apple.com/it/app/carbonio-mail/id1490253524" target="_blank"
+              class="store-btn ios-btn">
+              <i class="fab fa-apple"></i>
+              <div>
+                <small>Télécharger sur</small>
+                <strong>App Store</strong>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Setup steps -->
+        <div class="config-steps">
+          <h4><i class="fas fa-mobile-screen-button"></i> Configuration après installation</h4>
+          <div class="config-steps-list">
+            <div class="config-step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <strong>Téléchargez et installez l'application</strong>
+                <span>Ouvrez Google Play (Android) ou App Store (iOS) et recherchez <code>Carbonio Mail</code>, puis
+                  installez-la.</span>
+              </div>
+            </div>
+            <div class="config-step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <strong>Saisissez l'adresse du serveur</strong>
+                <span>Au premier lancement, entrez le nom du serveur :</span>
+                <div class="config-value-row" style="margin-top: 8px;">
+                  <span class="config-value" style="font-size: 0.95rem;">mail.adexcloud.dz</span>
+                  <button class="copy-config-btn" onclick="copyConfig('mail.adexcloud.dz')" title="Copier">
+                    <i class="fas fa-copy"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="config-step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <strong>Connectez-vous avec vos identifiants</strong>
+                <span>Entrez votre adresse email complète (ex: <code>prenom.nom@labo-nedjma.com</code>) et votre mot de
+                  passe professionnel.</span>
+              </div>
+            </div>
+            <div class="config-step">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <strong>Profitez de votre messagerie !</strong>
+                <span>La synchronisation se fera automatiquement. Vous recevrez vos emails, contacts et calendrier en
+                  temps réel.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screenshots gallery -->
+        <div class="app-screenshots-section">
+          <h4><i class="fas fa-images"></i> Aperçu de l'application</h4>
+          <div class="app-screenshots-gallery">
+            <div class="app-screenshot">
+              <img src="assets/app-screen2.png" alt="Inbox - Boîte de réception">
+              <span>Boîte de réception</span>
+            </div>
+            <div class="app-screenshot">
+              <img src="assets/app-screen1.png" alt="Compose - Rédaction">
+              <span>Rédaction d'email</span>
+            </div>
+            <div class="app-screenshot">
+              <img src="assets/app-screen3.png" alt="Contacts - Répertoire">
+              <span>Répertoire contacts</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Note -->
+        <div class="config-note">
+          <div class="config-note-icon">
+            <i class="fas fa-circle-info"></i>
+          </div>
+          <div>
+            <strong>Compatibilité</strong>
+            <p>Carbonio Mail est compatible avec Android 6.0+ et iOS 13+. Assurez-vous que votre appareil est à jour
+              pour une expérience optimale.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============= CONFIG EMAIL MODAL ============= -->
+  <div class="config-modal-overlay" id="configModal">
+    <div class="config-modal">
+      <div class="config-modal-header">
+        <div class="config-header-left">
+          <div class="config-header-icon">
+            <i class="fas fa-envelope-circle-check"></i>
+          </div>
+          <div>
+            <h2>Configuration Email</h2>
+            <p>Paramètres du serveur de messagerie Labo Nedjma</p>
+          </div>
+        </div>
+        <button class="config-close-btn" onclick="closeConfigModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="config-modal-body">
+        <!-- Intro -->
+        <div class="config-intro">
+          <div class="config-intro-icon">
+            <i class="fas fa-info-circle"></i>
+          </div>
+          <div>
+            <h4>Guide de configuration</h4>
+            <p>Suivez les paramètres ci-dessous pour configurer votre client de messagerie (Outlook, Thunderbird, Mail
+              mobile, etc.) avec le serveur <strong>adexcloud.dz</strong>.</p>
+          </div>
+        </div>
+
+        <!-- Two columns: IMAP and SMTP -->
+        <div class="config-cards-row">
+          <!-- IMAP Card -->
+          <div class="config-server-card imap-card">
+            <div class="config-card-badge imap-badge">
+              <i class="fas fa-download"></i> RÉCEPTION
+            </div>
+            <h3>Serveur IMAP</h3>
+            <p class="config-card-desc">Pour recevoir les emails entrants sur votre client de messagerie.</p>
+
+            <div class="config-field">
+              <label><i class="fas fa-server"></i> Serveur</label>
+              <div class="config-value-row">
+                <span class="config-value">mail.adexcloud.dz</span>
+                <button class="copy-config-btn" onclick="copyConfig('mail.adexcloud.dz')" title="Copier">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="config-field">
+              <label><i class="fas fa-hashtag"></i> Port</label>
+              <div class="config-value-row">
+                <span class="config-value port-highlight imap-port">993</span>
+                <button class="copy-config-btn" onclick="copyConfig('993')" title="Copier">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="config-field">
+              <label><i class="fas fa-lock"></i> Chiffrement</label>
+              <div class="config-value-row">
+                <span class="config-value encryption-badge ssl-badge">
+                  <i class="fas fa-shield-halved"></i> SSL/TLS
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SMTP Card -->
+          <div class="config-server-card smtp-card">
+            <div class="config-card-badge smtp-badge">
+              <i class="fas fa-paper-plane"></i> ENVOI
+            </div>
+            <h3>Serveur SMTP</h3>
+            <p class="config-card-desc">Pour envoyer les emails sortants depuis votre client de messagerie.</p>
+
+            <div class="config-field">
+              <label><i class="fas fa-server"></i> Serveur</label>
+              <div class="config-value-row">
+                <span class="config-value">smtp.adexcloud.dz</span>
+                <button class="copy-config-btn" onclick="copyConfig('smtp.adexcloud.dz')" title="Copier">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="config-field">
+              <label><i class="fas fa-hashtag"></i> Port</label>
+              <div class="config-value-row">
+                <span class="config-value port-highlight smtp-port">587</span>
+                <button class="copy-config-btn" onclick="copyConfig('587')" title="Copier">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="config-field">
+              <label><i class="fas fa-lock"></i> Chiffrement</label>
+              <div class="config-value-row">
+                <span class="config-value encryption-badge starttls-badge">
+                  <i class="fas fa-shield-halved"></i> STARTTLS
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Steps -->
+        <div class="config-steps">
+          <h4><i class="fas fa-list-check"></i> Étapes de configuration</h4>
+          <div class="config-steps-list">
+            <div class="config-step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <strong>Ouvrez les paramètres</strong>
+                <span>Accédez aux paramètres de compte dans votre client de messagerie (Outlook, Thunderbird,
+                  etc.)</span>
+              </div>
+            </div>
+            <div class="config-step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <strong>Saisissez vos identifiants</strong>
+                <span>Entrez votre adresse email complète et votre mot de passe professionnel</span>
+              </div>
+            </div>
+            <div class="config-step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <strong>Configurez le serveur IMAP</strong>
+                <span>Serveur: <code>mail.adexcloud.dz</code> — Port: <code>993</code> — Chiffrement:
+                  <code>SSL/TLS</code></span>
+              </div>
+            </div>
+            <div class="config-step">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <strong>Configurez le serveur SMTP</strong>
+                <span>Serveur: <code>smtp.adexcloud.dz</code> — Port: <code>587</code> — Chiffrement:
+                  <code>STARTTLS</code></span>
+              </div>
+            </div>
+            <div class="config-step">
+              <div class="step-number">5</div>
+              <div class="step-content">
+                <strong>Testez la connexion</strong>
+                <span>Envoyez un email test pour vérifier que la configuration fonctionne correctement</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Important Note -->
+        <div class="config-note">
+          <div class="config-note-icon">
+            <i class="fas fa-triangle-exclamation"></i>
+          </div>
+          <div>
+            <strong>Important</strong>
+            <p>Utilisez toujours votre adresse email complète comme nom d'utilisateur (ex: prenom.nom@labo-nedjma.com).
+              En cas de problème, contactez le support technique.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
