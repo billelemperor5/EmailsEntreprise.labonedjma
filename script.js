@@ -222,6 +222,8 @@ let companyEmails = [
     { unit: "Autres Unités", name: "-", poste: "-", mail: "tresorerie@labo-nedjma.com", status: "Active" },
     { unit: "Autres Unités", name: "-", poste: "-", mail: "khokhi.adel@labo-nedjma.com", status: "Active" },
     { unit: "Autres Unités", name: "-", poste: "-", mail: "rebaine.rafik@labo-nedjma.com", status: "Active" },
+    { unit: "Autres Unités", name: "-", poste: "-", mail: "ammari.abderrahmane@labo-nedjma.com", status: "Active" },
+    { unit: "Autres Unités", name: "-", poste: "-", mail: "fatmi.ibrahim@labo-nedjma.com", status: "Active" },
 ];
 
 // =============================================
