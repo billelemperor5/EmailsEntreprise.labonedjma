@@ -543,7 +543,7 @@
               <h3>Dernière Mise à Jour</h3>
             </div>
             <p>Date officielle de la dernière synchronisation globale des données du système.</p>
-            <div class="update-badge" id="lastUpdateDate">29 - 03 - 2026</div>
+            <div class="update-badge" id="lastUpdateDate">30 - 03 - 2026</div>
           </div>
 
           <!-- Export Card -->
@@ -1058,63 +1058,84 @@
                   <div class="step-number" style="background: linear-gradient(135deg, var(--green), #059669);">1</div>
                   <div class="step-content">
                     <strong>Téléchargez et installez eM Client</strong>
-                    <span>Rendez-vous sur <code>emclient.com</code> et téléchargez la version adaptée à votre système.</span>
+                    <span>Rendez-vous sur <code>emclient.com</code> et téléchargez la version adaptée à votre
+                      système.</span>
                   </div>
                 </div>
                 <div class="config-step">
                   <div class="step-number" style="background: linear-gradient(135deg, var(--green), #059669);">2</div>
                   <div class="step-content">
                     <strong>Ajoutez votre compte email</strong>
-                    <span>Lancez eM Client, cliquez sur <code>Menu &gt; Comptes &gt; Ajouter un compte</code> et choisissez "Courrier &gt; Autre".</span>
+                    <span>Lancez eM Client, cliquez sur <code>Menu &gt; Comptes &gt; Ajouter un compte</code> et
+                      choisissez "Courrier &gt; Autre".</span>
                   </div>
                 </div>
                 <div class="config-step">
                   <div class="step-number" style="background: linear-gradient(135deg, var(--green), #059669);">3</div>
                   <div class="step-content">
                     <strong>Configurez les paramètres du serveur</strong>
-                    <span>Remplissez les détails du serveur entrant (IMAP) et sortant (SMTP) selon les standards de Labo Nedjma.</span>
+                    <span>Remplissez les détails du serveur entrant (IMAP) et sortant (SMTP) selon les standards de Labo
+                      Nedjma.</span>
                   </div>
                 </div>
               </div>
 
               <!-- Bouton dynamique pour afficher les réglages -->
-              <button class="btn-outline" onclick="document.getElementById('emClientConfigBox').style.display='block'; this.style.display='none';" style="margin-top: 20px; width: 100%; justify-content: center; border-color: var(--green); color: var(--green);">
+              <button class="btn-outline"
+                onclick="document.getElementById('emClientConfigBox').style.display='block'; this.style.display='none';"
+                style="margin-top: 20px; width: 100%; justify-content: center; border-color: var(--green); color: var(--green);">
                 <i class="fas fa-sliders"></i> Afficher les paramètres avancés eM Client
               </button>
 
               <!-- Boîte dynamique des paramètres eM Client -->
               <div id="emClientConfigBox" style="display: none; margin-top: 20px; animation: fadeIn 0.4s ease;">
-                <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px;">
-                  
+                <div
+                  style="background: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px;">
+
                   <div style="margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border-light);">
-                    <h5 style="color: var(--text-dark); margin: 0 0 5px 0; font-size: 1rem;"><i class="fas fa-user-circle" style="color: var(--green); margin-right: 6px;"></i> Onglet "Général"</h5>
+                    <h5 style="color: var(--text-dark); margin: 0 0 5px 0; font-size: 1rem;"><i
+                        class="fas fa-user-circle" style="color: var(--green); margin-right: 6px;"></i> Onglet "Général"
+                    </h5>
                     <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.85rem; color: var(--text-main);">
-                      <li><strong>Authentification :</strong> Cochez <i>"Utiliser ces identifiants"</i>. Renseignez votre nom d'utilisateur (Email complet) et votre mot de passe fourni.</li>
+                      <li><strong>Authentification :</strong> Cochez <i>"Utiliser ces identifiants"</i>. Renseignez
+                        votre nom d'utilisateur (Email complet) et votre mot de passe fourni.</li>
                     </ul>
                   </div>
 
                   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px;">
                     <!-- IMAP Card -->
-                    <div style="background: white; border: 1px solid var(--border-light); border-radius: 8px; padding: 15px; position: relative;">
-                      <span style="position: absolute; top: -10px; left: 15px; background: var(--green); color: white; padding: 3px 10px; border-radius: 4px; font-size: 0.70rem; font-weight: bold; box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);">Onglet: IMAP</span>
-                      <ul style="list-style: none; padding: 0; margin: 12px 0 0 0; font-size: 0.85rem; color: var(--text-main); line-height: 1.6;">
+                    <div
+                      style="background: white; border: 1px solid var(--border-light); border-radius: 8px; padding: 15px; position: relative;">
+                      <span
+                        style="position: absolute; top: -10px; left: 15px; background: var(--green); color: white; padding: 3px 10px; border-radius: 4px; font-size: 0.70rem; font-weight: bold; box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);">Onglet:
+                        IMAP</span>
+                      <ul
+                        style="list-style: none; padding: 0; margin: 12px 0 0 0; font-size: 0.85rem; color: var(--text-main); line-height: 1.6;">
                         <li><strong>Hôte :</strong> <code>mail.adexcloud.dz</code></li>
                         <li><strong>Port :</strong> <code>143</code></li>
-                        <li><strong>Sécurité :</strong> <span style="color: #ea580c; font-weight: 600;">Forcer l'utilisation de SSL/TLS</span></li>
+                        <li><strong>Sécurité :</strong> <span style="color: #ea580c; font-weight: 600;">Forcer
+                            l'utilisation de SSL/TLS</span></li>
                         <hr style="border: 0; height: 1px; background: var(--border-light); margin: 8px 0;">
-                        <li><i class="fas fa-check-circle" style="color: var(--green);"></i> <strong>Sync :</strong> "Télécharger automatiquement les messages..."</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--green);"></i> <strong>Sync :</strong>
+                          "Télécharger automatiquement les messages..."</li>
                       </ul>
                     </div>
 
                     <!-- SMTP Card -->
-                    <div style="background: white; border: 1px solid var(--border-light); border-radius: 8px; padding: 15px; position: relative;">
-                      <span style="position: absolute; top: -10px; left: 15px; background: var(--blue); color: white; padding: 3px 10px; border-radius: 4px; font-size: 0.70rem; font-weight: bold; box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);">Onglet: SMTP</span>
-                      <ul style="list-style: none; padding: 0; margin: 12px 0 0 0; font-size: 0.85rem; color: var(--text-main); line-height: 1.6;">
+                    <div
+                      style="background: white; border: 1px solid var(--border-light); border-radius: 8px; padding: 15px; position: relative;">
+                      <span
+                        style="position: absolute; top: -10px; left: 15px; background: var(--blue); color: white; padding: 3px 10px; border-radius: 4px; font-size: 0.70rem; font-weight: bold; box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);">Onglet:
+                        SMTP</span>
+                      <ul
+                        style="list-style: none; padding: 0; margin: 12px 0 0 0; font-size: 0.85rem; color: var(--text-main); line-height: 1.6;">
                         <li><strong>Hôte :</strong> <code>smtp.adexcloud.dz</code></li>
                         <li><strong>Port :</strong> <code>587</code></li>
-                        <li><strong>Sécurité :</strong> <span style="color: #ea580c; font-weight: 600;">Utiliser SSL/TLS si disponible</span></li>
+                        <li><strong>Sécurité :</strong> <span style="color: #ea580c; font-weight: 600;">Utiliser SSL/TLS
+                            si disponible</span></li>
                         <hr style="border: 0; height: 1px; background: var(--border-light); margin: 8px 0;">
-                        <li><i class="fas fa-check-circle" style="color: var(--green);"></i> <strong>Auth :</strong> Cochez "Le serveur requiert une authentification"</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--green);"></i> <strong>Auth :</strong>
+                          Cochez "Le serveur requiert une authentification"</li>
                       </ul>
                     </div>
                   </div>
