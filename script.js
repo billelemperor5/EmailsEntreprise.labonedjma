@@ -224,6 +224,7 @@ let companyEmails = [
     { unit: "Autres Unités", name: "-", poste: "-", mail: "rebaine.rafik@labo-nedjma.com", status: "Active" },
     { unit: "Autres Unités", name: "-", poste: "-", mail: "ammari.abderrahmane@labo-nedjma.com", status: "Active" },
     { unit: "Autres Unités", name: "-", poste: "-", mail: "fatmi.ibrahim@labo-nedjma.com", status: "Active" },
+    { unit: "El Oued", name: "-", poste: "Assistante de production El Oued", mail: "eloued.production.assist@labo-nedjma.com", status: "Active" },
 ];
 
 // =============================================
@@ -431,7 +432,7 @@ function renderEmails(emails, page = 1) {
     currentFilteredEmails = emails;
     currentPage = page;
     emailList.innerHTML = '';
-    
+
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = Math.min(startIndex + itemsPerPage, emails.length);
     const paginatedEmails = emails.slice(startIndex, endIndex);
@@ -469,29 +470,29 @@ function renderEmails(emails, page = 1) {
         `;
         emailList.innerHTML += row;
     });
-    
+
     renderPagination(emails.length, page);
 }
 
 function renderPagination(totalItems, currentPage) {
     const container = document.getElementById('paginationContainer');
     if (!container) return;
-    
+
     const totalPages = Math.ceil(totalItems / itemsPerPage);
     let html = '';
-    
+
     if (totalPages > 1) {
         const prevDisabled = currentPage === 1 ? 'disabled' : '';
         const prevClick = currentPage === 1 ? '' : `onclick="goToPage(${currentPage - 1})"`;
-        
+
         const nextDisabled = currentPage === totalPages ? 'disabled' : '';
         const nextClick = currentPage === totalPages ? '' : `onclick="goToPage(${currentPage + 1})"`;
-        
+
         html += `<button class="page-btn" ${prevDisabled} ${prevClick}><i class="fas fa-chevron-left"></i> Précédent</button>`;
         html += `<div class="page-info">Page <span style="color: var(--primary); font-weight: 800;">${currentPage}</span> sur ${totalPages}</div>`;
         html += `<button class="page-btn" ${nextDisabled} ${nextClick}>Suivant <i class="fas fa-chevron-right"></i></button>`;
     }
-    
+
     container.innerHTML = html;
 }
 
@@ -499,7 +500,7 @@ function goToPage(page) {
     const totalPages = Math.ceil(currentFilteredEmails.length / itemsPerPage);
     if (page >= 1 && page <= totalPages) {
         renderEmails(currentFilteredEmails, page);
-        document.querySelector('.page-content').scrollTo({top: 0, behavior: 'smooth'});
+        document.querySelector('.page-content').scrollTo({ top: 0, behavior: 'smooth' });
     }
 }
 
@@ -863,19 +864,19 @@ function closeSupportModal() {
 }
 
 // Click outside to close
-document.getElementById('configModal').addEventListener('click', function(e) {
+document.getElementById('configModal').addEventListener('click', function (e) {
     if (e.target === this) closeConfigModal();
 });
 
-document.getElementById('installModal').addEventListener('click', function(e) {
+document.getElementById('installModal').addEventListener('click', function (e) {
     if (e.target === this) closeInstallModal();
 });
 
-document.getElementById('desktopModal').addEventListener('click', function(e) {
+document.getElementById('desktopModal').addEventListener('click', function (e) {
     if (e.target === this) closeDesktopModal();
 });
 
-document.getElementById('supportModal').addEventListener('click', function(e) {
+document.getElementById('supportModal').addEventListener('click', function (e) {
     if (e.target === this) closeSupportModal();
 });
 
@@ -964,13 +965,13 @@ function showCopyNotification(message) {
 async function exportToExcel() {
     const btn = document.querySelector('.btn-export');
     const originalText = btn.innerHTML;
-    
+
     // Check if ExcelJS is loaded, if not inject it
     if (typeof ExcelJS === 'undefined') {
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Chargement du module...';
         btn.style.opacity = '0.8';
         btn.style.pointerEvents = 'none';
-        
+
         const script = document.createElement('script');
         script.src = 'https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js';
         script.onload = () => executeExcelExport(btn, originalText);
@@ -988,7 +989,7 @@ async function exportToExcel() {
 
 async function executeExcelExport(btn, originalText) {
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Génération Excel...';
-    
+
     try {
         const workbook = new ExcelJS.Workbook();
         workbook.creator = 'Système Labo Nedjma';
@@ -1011,7 +1012,7 @@ async function executeExcelExport(btn, originalText) {
         const headers = ['N°', 'Unité', 'Nom et Prénom', 'Poste', 'Adresse Email', 'Statut'];
         sheet.getRow(2).values = headers;
         sheet.getRow(2).height = 25;
-        
+
         sheet.columns = [
             { key: 'no', width: 8 },
             { key: 'unit', width: 22 },
@@ -1044,7 +1045,7 @@ async function executeExcelExport(btn, originalText) {
                 emp.mail,
                 emp.status
             ]);
-            
+
             row.height = 22;
 
             row.eachCell((cell, colNum) => {
@@ -1056,12 +1057,12 @@ async function executeExcelExport(btn, originalText) {
                     right: { style: 'thin', color: { argb: 'FFEEEEEE' } }
                 };
                 cell.alignment = { vertical: 'middle', horizontal: (colNum === 1 || colNum === 6) ? 'center' : 'left' };
-                
+
                 // Unité en gras
                 if (colNum === 2) {
                     cell.font = { name: 'Segoe UI', size: 11, bold: true, color: { argb: 'FF1E293B' } };
                 }
-                
+
                 // Style des statuts avec couleurs conditionnelles
                 if (colNum === 6) {
                     if (emp.status === 'Active') {
@@ -1084,7 +1085,7 @@ async function executeExcelExport(btn, originalText) {
 
         // Génération du fichier binaire Excel
         const buffer = await workbook.xlsx.writeBuffer();
-        
+
         // Téléchargement
         const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
         const url = window.URL.createObjectURL(blob);
@@ -1094,13 +1095,13 @@ async function executeExcelExport(btn, originalText) {
         a.download = `Repertoire_Labo_Nedjma_${dateStr}.xlsx`;
         document.body.appendChild(a);
         a.click();
-        
+
         // Nettoyage
         document.body.removeChild(a);
         window.URL.revokeObjectURL(url);
-        
+
         setTimeout(() => showCopyNotification('✅ Fichier Excel généré avec succès !'), 500);
-        
+
     } catch (e) {
         console.error(e);
         alert("Erreur lors de la création du fichier Excel.");
