@@ -4,7 +4,7 @@
 // ================================================
 
 // =============================================
-// SPLASH SCREEN
+// SPLASH SCREEN — Premium v3.0
 // =============================================
 (function initSplashScreen() {
     const splash = document.getElementById('splashScreen');
@@ -16,28 +16,41 @@
     if (sidebar) sidebar.style.opacity = '0';
     if (mainWrapper) mainWrapper.style.opacity = '0';
 
-    // Loader text updates
-    const loaderText = splash.querySelector('.splash-loader-text');
+    // Status text updates
+    const statusText = splash.querySelector('.splash-status-text');
+    const pctEl = splash.querySelector('.splash-progress-pct');
     const messages = [
         'Initialisation du système...',
-        'Chargement des données...',
+        'Chargement des modules...',
         'Synchronisation des emails...',
-        'Préparation du tableau de bord...',
+        'Préparation de l\'interface...',
         'Système prêt !'
     ];
 
     let msgIndex = 0;
     const msgInterval = setInterval(() => {
         msgIndex++;
-        if (msgIndex < messages.length && loaderText) {
-            loaderText.textContent = messages[msgIndex];
+        if (msgIndex < messages.length && statusText) {
+            statusText.textContent = messages[msgIndex];
         }
     }, 650);
+
+    // Percentage counter animation
+    if (pctEl) {
+        let pct = 0;
+        const pctInterval = setInterval(() => {
+            pct += 1;
+            if (pct > 100) pct = 100;
+            pctEl.textContent = pct + '%';
+            if (pct >= 100) clearInterval(pctInterval);
+        }, 33);
+    }
 
     // After loading completes, fade out splash
     setTimeout(() => {
         clearInterval(msgInterval);
-        if (loaderText) loaderText.textContent = 'Système prêt !';
+        if (statusText) statusText.textContent = 'Système prêt !';
+        if (pctEl) pctEl.textContent = '100%';
 
         setTimeout(() => {
             splash.classList.add('fade-out');
@@ -126,13 +139,13 @@ let companyEmails = [
     { unit: "Larbâa", name: "Abdelhakim MANSEUR", poste: "GDS", mail: "manseur.abdelhakim@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "Samy BEY", poste: "Développement", mail: "bey.samy@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "Développement", poste: "Développement", mail: "teams4-developpement@labo-nedjma.com", status: "Active" },
-    { unit: "Larbâa", name: "Amel MEDINI", poste: "ASSISTANTE RH", mail: "medini.amel@labo-nedjma.com", status: "Active" },
+    { unit: "Larbâa", name: "Amel MEDINI", poste: "ASSISTANTE RH", mail: "medini.amel@labo-nedjma.com", status: "Bloquée" },
     { unit: "Larbâa", name: "Bouchra AKDOUCHE", poste: "CONTROLE QUALITE (PHYSICO CHEMIE)", mail: "akdouche.bouchra@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "Contrôle Qualité", poste: "Contrôle Qualité", mail: "controle.qualite@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "Abdelhak DAAS", poste: "Control Qualité", mail: "daas.abdelhak@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "Abderraouf DJAIDRI", poste: "Control Qualité", mail: "djaidri.abderraouf@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "Khouloud AMRAR", poste: "Control qualité", mail: "amrar.khlouloud@labo-nedjma.com", status: "Active" },
-    { unit: "Larbâa", name: "grerifa boualem", poste: "GDS", mail: "grerifa.boualem@labo-nedjma.com", status: "Active" },
+    { unit: "Larbâa", name: "grerifa boualem", poste: "GDS", mail: "grerifa.boualem@labo-nedjma.com", status: "Bloquée" },
     { unit: "Larbâa", name: "cheddik abdelhakim", poste: "GDS", mail: "cheddik.abdelhakim@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "ouldcherchali islem", poste: "GDS", mail: "ouldcherchali.islem@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "Romaissa MANSOURI", poste: "CONTROL QUALITÉ", mail: "mansouri.romuissa@labo-nedjma.com", status: "Active" },
@@ -294,15 +307,28 @@ function navigateTo(page) {
         pageTitle.innerHTML = pageTitles[page];
     }
 
-    // Show/hide search bar
-    topbarSearch.style.display = (page === 'directory') ? 'flex' : 'none';
+    // Search bar is always visible
 
     // Execute page-specific rendering
     if (page === 'dashboard') {
         updateDashboardStats();
     } else if (page === 'directory') {
-        searchInput.value = '';
-        renderEmails(companyEmails);
+        // Only clear search if it's empty (don't clear if coming from global search)
+        if (!searchInput.value.trim()) {
+            searchInput.value = '';
+            renderEmails(companyEmails);
+        } else {
+            // Re-filter with current search term
+            const term = searchInput.value.toLowerCase();
+            const filtered = companyEmails.filter(item =>
+                item.name.toLowerCase().includes(term) ||
+                item.mail.toLowerCase().includes(term) ||
+                item.unit.toLowerCase().includes(term) ||
+                item.poste.toLowerCase().includes(term) ||
+                item.status.toLowerCase().includes(term)
+            );
+            renderEmails(filtered);
+        }
         renderRecent();
         updateDirectoryStats();
     } else if (page === 'stats') {
@@ -558,6 +584,13 @@ function updateDirectoryStats(emails) {
 // =============================================
 searchInput.addEventListener('input', (e) => {
     const term = e.target.value.toLowerCase();
+
+    // If not on directory page, navigate to it first
+    const directoryPage = document.getElementById('pageDirectory');
+    if (!directoryPage || !directoryPage.classList.contains('active')) {
+        navigateTo('directory');
+    }
+
     const filtered = companyEmails.filter(item =>
         item.name.toLowerCase().includes(term) ||
         item.mail.toLowerCase().includes(term) ||
