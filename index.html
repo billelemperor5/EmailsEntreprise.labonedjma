@@ -17,103 +17,125 @@
 <body>
   <!-- ===================== SPLASH SCREEN ===================== -->
   <div id="splashScreen" class="splash-screen">
+    <!-- Animated mesh background -->
+    <div class="splash-bg-mesh"></div>
+    <div class="splash-bg-grid"></div>
+
+    <!-- Floating geometric shapes -->
+    <div class="splash-shapes">
+      <div class="geo-shape shape-1"></div>
+      <div class="geo-shape shape-2"></div>
+      <div class="geo-shape shape-3"></div>
+      <div class="geo-shape shape-4"></div>
+      <div class="geo-shape shape-5"></div>
+      <div class="geo-shape shape-6"></div>
+      <div class="geo-shape shape-7"></div>
+    </div>
+
     <div class="splash-content">
-      <!-- Animated ring around logo -->
-      <div class="splash-logo-wrapper">
-        <div class="splash-ring"></div>
-        <div class="splash-ring ring-2"></div>
-        <div class="splash-logo-container">
+      <!-- Logo with orbital animation -->
+      <div class="splash-logo-orbit">
+        <div class="orbit orbit-1"></div>
+        <div class="orbit orbit-2"></div>
+        <div class="orbit orbit-3"></div>
+        <div class="orbit-dot dot-1"></div>
+        <div class="orbit-dot dot-2"></div>
+        <div class="orbit-dot dot-3"></div>
+        <div class="splash-logo-glass">
           <img src="assets/logo.png" alt="Labo Nedjma" class="splash-logo">
         </div>
       </div>
 
-      <!-- System title -->
+      <!-- Title section -->
       <div class="splash-text">
-        <h1 class="splash-company">LABO NEDJMA</h1>
-        <div class="splash-divider"></div>
-        <p class="splash-system">Système de Gestion des Emails</p>
-        <span class="splash-version">v2.0 — Enterprise Edition</span>
-      </div>
-
-      <!-- Loading bar -->
-      <div class="splash-loader">
-        <div class="splash-loader-track">
-          <div class="splash-loader-fill"></div>
+        <div class="splash-badge">
+          <span class="badge-dot"></span>
+          Enterprise Platform
         </div>
-        <span class="splash-loader-text">Initialisation du système...</span>
+        <h1 class="splash-title">
+          <span class="title-line-1">LABO</span>
+          <span class="title-line-2">NEDJMA</span>
+        </h1>
+        <div class="splash-divider-line">
+          <span></span><span></span><span></span>
+        </div>
+        <p class="splash-subtitle">Système de Gestion des Emails</p>
       </div>
 
-      <!-- Developer credit -->
-      <div class="splash-credit">
-        <span>Par</span>
-        <span class="splash-dev-name">Dev. Billel Bouraba</span>
+      <!-- Progress section -->
+      <div class="splash-progress">
+        <div class="splash-progress-track">
+          <div class="splash-progress-fill"></div>
+          <div class="splash-progress-glow"></div>
+        </div>
+        <div class="splash-progress-info">
+          <span class="splash-status-text">Chargement des modules...</span>
+          <span class="splash-progress-pct">0%</span>
+        </div>
       </div>
-    </div>
 
-    <!-- Background particles -->
-    <div class="splash-particles">
-      <div class="particle p1"></div>
-      <div class="particle p2"></div>
-      <div class="particle p3"></div>
-      <div class="particle p4"></div>
-      <div class="particle p5"></div>
-      <div class="particle p6"></div>
+      <!-- Footer -->
+      <div class="splash-footer">
+        <span class="splash-version-tag">v2.5</span>
+        <span class="splash-sep">•</span>
+        <span class="splash-dev">Dev. <span class="glowing-name">Billel Bouraba</span></span>
+      </div>
     </div>
   </div>
 
   <!-- Sidebar Navigation -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <div class="sidebar-logo">
-        <img src="assets/logo.png" alt="Labo Nedjma Logo">
-        <div class="sidebar-brand">
-          <span class="brand-name">LABO NEDJMA</span>
-          <span class="brand-tag">EMAIL SYSTEM</span>
+      <div class="sidebar-logo-centered">
+        <div class="sidebar-logo-ring">
+          <img src="assets/logo.png" alt="Labo Nedjma Logo">
         </div>
+        <span class="sidebar-brand-name">Labo<strong>Nedjma</strong></span>
+        <span class="sidebar-admin-badge"><i class="fas fa-shield-halved"></i> Administrateur</span>
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <span class="sidebar-label">VUE D'ENSEMBLE</span>
-      <a href="#" class="sidebar-link active" data-page="dashboard" id="navDashboard">
-        <i class="fas fa-th-large"></i>
-        <span>Tableau de Bord</span>
-      </a>
-    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section">
+        <span class="sidebar-label">VUE D'ENSEMBLE</span>
+        <a href="#" class="sidebar-link active" data-page="dashboard" id="navDashboard">
+          <i class="fas fa-th-large"></i>
+          <span>Tableau de Bord</span>
+        </a>
+      </div>
 
-    <div class="sidebar-section">
-      <span class="sidebar-label">GESTION & OPÉRATIONS</span>
-      <a href="#" class="sidebar-link" data-page="directory" id="navDirectory">
-        <i class="fas fa-envelope-open-text"></i>
-        <span>Répertoire Emails</span>
-      </a>
-      <a href="#" class="sidebar-link" data-page="stats" id="navStats">
-        <i class="fas fa-chart-pie"></i>
-        <span>Unités & Statistiques</span>
-      </a>
-      <a href="#" class="sidebar-link" data-page="tools" id="navTools">
-        <i class="fas fa-cogs"></i>
-        <span>Ressources & Outils</span>
-      </a>
-      <a href="#" class="sidebar-link" data-page="database" id="navDatabase">
-        <i class="fas fa-database"></i>
-        <span>Base de Données</span>
-      </a>
-    </div>
+      <div class="sidebar-section">
+        <span class="sidebar-label">GESTION & OPÉRATIONS</span>
+        <a href="#" class="sidebar-link" data-page="directory" id="navDirectory">
+          <i class="fas fa-envelope-open-text"></i>
+          <span>Répertoire Emails</span>
+        </a>
+        <a href="#" class="sidebar-link" data-page="stats" id="navStats">
+          <i class="fas fa-chart-pie"></i>
+          <span>Unités & Statistiques</span>
+        </a>
+        <a href="#" class="sidebar-link" data-page="tools" id="navTools">
+          <i class="fas fa-cogs"></i>
+          <span>Ressources & Outils</span>
+        </a>
+        <a href="#" class="sidebar-link" data-page="database" id="navDatabase">
+          <i class="fas fa-database"></i>
+          <span>Base de Données</span>
+        </a>
+      </div>
 
-    <div class="sidebar-section">
-      <span class="sidebar-label">SYSTÈME</span>
-      <a href="#" class="sidebar-link" id="navAbout">
-        <i class="fas fa-user-shield"></i>
-        <span>Développeur</span>
-      </a>
-      <a href="#" class="sidebar-link" id="navCompany">
-        <i class="fas fa-building"></i>
-        <span>Labo Nedjma</span>
-      </a>
-    </div>
-
-
+      <div class="sidebar-section">
+        <span class="sidebar-label">SYSTÈME</span>
+        <a href="#" class="sidebar-link" id="navAbout">
+          <i class="fas fa-user-shield"></i>
+          <span>Développeur</span>
+        </a>
+        <a href="#" class="sidebar-link" id="navCompany">
+          <i class="fas fa-building"></i>
+          <span>Labo Nedjma</span>
+        </a>
+      </div>
+    </nav>
   </aside>
 
   <!-- Main Content Wrapper -->
@@ -124,17 +146,21 @@
         <button class="sidebar-toggle" id="sidebarToggle">
           <i class="fas fa-bars"></i>
         </button>
-        <div class="topbar-title">
-          <h1 id="pageTitle">TABLEAU DE <span class="accent">BORD</span></h1>
+        <div class="topbar-breadcrumb">
+          <span class="breadcrumb-root"><i class="fas fa-home"></i></span>
+          <i class="fas fa-chevron-right breadcrumb-sep"></i>
+          <h1 id="pageTitle" class="breadcrumb-current">TABLEAU DE <span class="accent">BORD</span></h1>
+        </div>
+      </div>
+
+      <div class="topbar-center">
+        <div class="topbar-search" id="topbarSearch">
+          <i class="fas fa-search"></i>
+          <input type="text" id="searchInput" placeholder="Rechercher un email, nom, unité...">
         </div>
       </div>
 
       <div class="topbar-right">
-        <div class="topbar-search" id="topbarSearch" style="display:none;">
-          <i class="fas fa-search"></i>
-          <input type="text" id="searchInput" placeholder="Rechercher un email, nom, unité...">
-        </div>
-
         <div class="topbar-status">
           <span class="status-badge online">
             <span class="status-pulse"></span>
@@ -146,15 +172,18 @@
           <i class="fas fa-arrows-rotate"></i>
         </button>
 
+        <div class="topbar-divider"></div>
+
         <div class="topbar-user" id="infoBtn">
           <div class="topbar-user-avatar">
             <img src="assets/support-profile.jpg" alt="Billel Bouraba">
+            <span class="user-online-indicator"></span>
           </div>
           <div class="topbar-user-info">
             <span class="topbar-user-name">Billel Bouraba</span>
             <span class="topbar-user-role">ADMIN</span>
           </div>
-          <i class="fas fa-chevron-down" style="font-size: 0.7rem; color: #94a3b8;"></i>
+          <i class="fas fa-chevron-down topbar-chevron"></i>
         </div>
       </div>
     </header>
@@ -543,7 +572,7 @@
               <h3>Dernière Mise à Jour</h3>
             </div>
             <p>Date officielle de la dernière synchronisation globale des données du système.</p>
-            <div class="update-badge" id="lastUpdateDate">30 - 03 - 2026</div>
+            <div class="update-badge" id="lastUpdateDate">04 - 04 - 2026</div>
           </div>
 
           <!-- Export Card -->
@@ -574,7 +603,7 @@
                 style="background: var(--bg-hover); padding: 12px; border-radius: var(--radius-md); border-left: 3px solid var(--purple);">
                 <strong style="display: block; color: var(--text-dark); margin-bottom: 4px;">Système Email — Labo
                   Nedjma</strong>
-                <span style="color: var(--text-muted);">Version 2.0 (Édition 2026)</span>
+                <span style="color: var(--text-muted);">Version 2.5 (Édition 2026)</span>
               </div>
 
               <div
