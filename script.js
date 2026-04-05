@@ -342,6 +342,11 @@ function navigateTo(page) {
     const overlay = document.querySelector('.sidebar-overlay');
     if (overlay) overlay.classList.remove('show');
 
+    // Update mobile bottom nav active state
+    document.querySelectorAll('.mob-nav-item[data-page]').forEach(item => {
+        item.classList.toggle('active', item.getAttribute('data-page') === page);
+    });
+
     // Scroll to top
     document.querySelector('.page-content').scrollTop = 0;
     window.scrollTo({ top: 0, behavior: 'smooth' });
