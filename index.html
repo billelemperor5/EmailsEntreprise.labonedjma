@@ -627,6 +627,40 @@
     </div>
   </div>
 
+  <!-- ===================== MOBILE BOTTOM NAV ===================== -->
+  <nav class="mobile-bottom-nav" id="mobileBottomNav">
+    <a href="#" class="mob-nav-item active" data-page="dashboard" onclick="navigateTo('dashboard'); return false;">
+      <div class="mob-nav-icon">
+        <i class="fas fa-th-large"></i>
+      </div>
+      <span class="mob-nav-label">Accueil</span>
+    </a>
+    <a href="#" class="mob-nav-item" data-page="directory" onclick="navigateTo('directory'); return false;">
+      <div class="mob-nav-icon">
+        <i class="fas fa-envelope-open-text"></i>
+      </div>
+      <span class="mob-nav-label">Répertoire</span>
+    </a>
+    <a href="#" class="mob-nav-item mob-nav-center-btn" onclick="document.getElementById('searchInput').focus(); return false;">
+      <div class="mob-nav-center-ring">
+        <i class="fas fa-magnifying-glass"></i>
+      </div>
+      <span class="mob-nav-search-label">Rechercher</span>
+    </a>
+    <a href="#" class="mob-nav-item" data-page="stats" onclick="navigateTo('stats'); return false;">
+      <div class="mob-nav-icon">
+        <i class="fas fa-chart-pie"></i>
+      </div>
+      <span class="mob-nav-label">Unités</span>
+    </a>
+    <a href="#" class="mob-nav-item" data-page="database" onclick="navigateTo('database'); return false;">
+      <div class="mob-nav-icon">
+        <i class="fas fa-database"></i>
+      </div>
+      <span class="mob-nav-label">Données</span>
+    </a>
+  </nav>
+
   <!-- Toast Notification -->
   <div id="copyToast" class="toast">
     <div class="toast-icon"><i class="fas fa-check"></i></div>
