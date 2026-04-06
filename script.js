@@ -237,6 +237,8 @@ let companyEmails = [
     { unit: "Autres Unités", name: "-", poste: "-", mail: "rebaine.rafik@labo-nedjma.com", status: "Active" },
     { unit: "Autres Unités", name: "-", poste: "-", mail: "ammari.abderrahmane@labo-nedjma.com", status: "Active" },
     { unit: "Autres Unités", name: "-", poste: "-", mail: "fatmi.ibrahim@labo-nedjma.com", status: "Active" },
+    { unit: "Oued Smar", name: "Amine AITEUR", poste: "Superviseur Ouest", mail: "aiteur.amine@labo-nedjma.com", status: "Active" },
+    { unit: "Autres Unités", name: "LATAOUI ABDENNOUR", poste: "Superviseur des ventes - Centre", mail: "lataoui.abdennour@labo-nedjma.com", status: "Active" },
     { unit: "El Oued", name: "-", poste: "Assistante de production El Oued", mail: "eloued.production.assist@labo-nedjma.com", status: "Active" },
 ];
 
@@ -389,21 +391,23 @@ function closeCompanyModal() {
     }
 });
 
-// Mobile sidebar toggle
-sidebarToggle.addEventListener('click', () => {
-    sidebar.classList.toggle('open');
-    let overlay = document.querySelector('.sidebar-overlay');
-    if (!overlay) {
-        overlay = document.createElement('div');
-        overlay.className = 'sidebar-overlay';
-        document.body.appendChild(overlay);
-        overlay.addEventListener('click', () => {
-            sidebar.classList.remove('open');
-            overlay.classList.remove('show');
-        });
-    }
-    overlay.classList.toggle('show');
-});
+// Mobile sidebar toggle (null check to prevent crash if not found)
+if (sidebarToggle) {
+    sidebarToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+        let overlay = document.querySelector('.sidebar-overlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.className = 'sidebar-overlay';
+            document.body.appendChild(overlay);
+            overlay.addEventListener('click', () => {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('show');
+            });
+        }
+        overlay.classList.toggle('show');
+    });
+}
 
 // =============================================
 // DASHBOARD STATS
