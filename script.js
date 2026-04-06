@@ -179,6 +179,7 @@ let companyEmails = [
     { unit: "Larbâa", name: "hechiche.lamia", poste: "Assistante administrative", mail: "hechiche.lamia@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "RAHLI BADREDDINE", poste: "HSE", mail: "rahali.badreddine@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "kaloune malek", poste: "HSE", mail: "kaloune.malek@labo-nedjma.com", status: "Active" },
+    { unit: "Larbâa", name: "amel sahraoui", poste: "chef de production", mail: "amel.sahraoui@labo-nedjma.com", status: "Active" },
 
     // Oued Smar Unit
     { unit: "Oued Smar", name: "Yasmine NOUASRI", poste: "assistant rh", mail: "nouasri.yasmine@labo-nedjma.com", status: "Active" },
