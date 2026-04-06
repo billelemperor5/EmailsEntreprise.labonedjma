@@ -880,11 +880,24 @@ body {
   border-color: var(--primary);
 }
 
-/* Breadcrumb Navigation */
+/* Breadcrumb Navigation - Modern Pill Design */
 .topbar-breadcrumb {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  background: linear-gradient(145deg, #ffffff, #f8fafc);
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  border-radius: 30px;
+  padding: 6px 18px 6px 6px;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.05), inset 0 2px 4px rgba(255, 255, 255, 0.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-left: -10px; /* Slight offset to align with edge */
+}
+
+.topbar-breadcrumb:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.1), inset 0 2px 4px rgba(255, 255, 255, 0.9);
+  border-color: rgba(99, 102, 241, 0.3);
 }
 
 .breadcrumb-root {
@@ -893,33 +906,45 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  background: var(--primary-bg);
-  color: var(--primary);
-  font-size: 0.8rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  font-size: 0.85rem;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
   transition: var(--transition);
   cursor: pointer;
 }
 
 .breadcrumb-root:hover {
-  background: var(--primary);
-  color: white;
+  transform: scale(1.08) rotate(5deg);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.6);
 }
 
 .breadcrumb-sep {
-  font-size: 0.55rem;
-  color: var(--text-light);
+  font-size: 0.65rem;
+  color: rgba(148, 163, 184, 0.6);
+  margin-top: 1px;
 }
 
 .breadcrumb-current {
-  font-size: 1rem;
+  font-size: 0.92rem;
   font-weight: 800;
-  color: var(--text-dark);
-  letter-spacing: 0.5px;
+  color: #1e293b;
+  letter-spacing: 0.2px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .breadcrumb-current .accent {
-  color: var(--primary);
+  color: #6366f1;
+  background: rgba(99, 102, 241, 0.1);
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 1px;
 }
 
 /* Center Search */
@@ -5002,7 +5027,7 @@ body {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   /* ====================================================
      RÉPERTOIRE DES EMAILS — Mobile Fix Complet
      ==================================================== */
@@ -5164,10 +5189,10 @@ body {
 }
 
 /* ============================================================
-   MOBILE RESPONSIVE — PHONES (max 768px)
+   MOBILE RESPONSIVE — PHONES & TABLETS (max 992px)
    Full app-like experience
    ============================================================ */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   /* ---- Global ---- */
   html { font-size: 13px; }
   body { overflow-x: hidden; }
@@ -5206,16 +5231,24 @@ body {
 
   .topbar-left { gap: 6px; flex: 0 0 auto; }
 
+  /* Dark glass pill for mobile breadcrumb */
   .topbar-breadcrumb {
-    gap: 5px;
+    gap: 8px !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 4px 12px 4px 4px !important;
+    border-radius: 20px !important;
+    box-shadow: none !important;
+    margin-left: 0 !important;
   }
 
   .breadcrumb-root {
-    background: rgba(99, 102, 241, 0.15) !important;
-    color: #818cf8 !important;
-    width: 28px !important;
-    height: 28px !important;
-    font-size: 0.72rem !important;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+    color: white !important;
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 0.65rem !important;
+    box-shadow: none !important;
   }
 
   .breadcrumb-sep {
@@ -5224,14 +5257,20 @@ body {
   }
 
   .breadcrumb-current {
-    font-size: 0.78rem !important;
+    font-size: 0.72rem !important;
     letter-spacing: 0;
-    color: #e2e8f0 !important;
+    color: #f1f5f9 !important;
     font-weight: 700 !important;
+    gap: 4px !important;
   }
 
   .breadcrumb-current .accent {
-    color: #818cf8 !important;
+    color: #ffffff !important;
+    background: rgba(99, 102, 241, 0.25) !important;
+    border: 1px solid rgba(99, 102, 241, 0.2) !important;
+    padding: 2px 8px !important;
+    border-radius: 8px !important;
+    font-size: 0.65rem !important;
   }
 
   /* Search — full width, clean */
@@ -5707,9 +5746,9 @@ body {
 }
 
 /* ============================================================
-   MOBILE SPLASH SCREEN — Professional phone experience
+   MOBILE SPLASH SCREEN — Professional phone & tablet experience
    ============================================================ */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   .splash-screen {
     padding: 20px;
   }
@@ -5790,9 +5829,9 @@ body {
 }
 
 /* ============================================================
-   MODALS & INTERNAL PAGES — MOBILE (max 768px)
+   MODALS & INTERNAL PAGES — MOBILE & TABLET (max 992px)
    ============================================================ */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
 
   /* === Config Modal (Base) === */
   .config-modal-overlay {
