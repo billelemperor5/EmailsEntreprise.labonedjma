@@ -117,7 +117,7 @@ let companyEmails = [
     { unit: "Larbâa", name: "Youcef MERZOUK", poste: "Responsable technique", mail: "merzouk.youcef@labo-nedjma.com", status: "Bloquée" },
     { unit: "Larbâa", name: "Responsable Stock", poste: "Responsable Stock", mail: "responsable.stock@labo-nedjma.com", status: "Bloquée" },
     { unit: "Larbâa", name: "Abdeldjabar BASSI", poste: "Responsable Sécurité", mail: "bassi.abdeldjabar@labo-nedjma.com", status: "Bloquée" },
-    { unit: "Larbâa", name: "Responsable RH", poste: "Responsable RH", mail: "responsable.rh@labo-nedjma.com", status: "Active" },
+    { unit: "Larbâa", name: "Responsable RH", poste: "Responsable RH", mail: "responsable.rh@labo-nedjma.com", status: "Bloquée" },
     { unit: "Larbâa", name: "Nadia SEBBAGH", poste: "Responsable R & D", mail: "sebbagh.nadia@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "Asma REGUIEG", poste: "Responsable Laboratoire", mail: "labo@labo-nedjma.com", status: "Bloquée" },
     { unit: "Larbâa", name: "Asma REGUIEG", poste: "Responsable Laboratoire", mail: "reguieg.asma@labo-nedjma.com", status: "Active" },
@@ -160,24 +160,24 @@ let companyEmails = [
     { unit: "Larbâa", name: "Thiziri AHADDAD", poste: "CHARGE DEVELOPEMENT RH", mail: "thiziri.ahaddad@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "Chahira HARTANI", poste: "CHARGE ADMINISTRATIVE R & D", mail: "hartani.chahira@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "Ouarda ARABI", poste: "Assistante administrative", mail: "arabi.ouarda@labo-nedjma.com", status: "Bloquée" },
-    { unit: "Larbâa", name: "Assistante de production", poste: "Assistante de production", mail: "production.assist@labo-nedjma.com", status: "Active" },
-    { unit: "Larbâa", name: "Assistante de production", poste: "Assistante de production", mail: "production.assist2@labo-nedjma.com", status: "Active" },
-    { unit: "Larbâa", name: "Assistante de production", poste: "Assistante de production", mail: "production.assist3@labo-nedjma.com", status: "Active" },
-    { unit: "Larbâa", name: "Assistante de production", poste: "Assistante de production", mail: "production.assist4@labo-nedjma.com", status: "Active" },
-    { unit: "Larbâa", name: "Assistante de production", poste: "Assistante de production", mail: "production.assist5@labo-nedjma.com", status: "Active" },
+    { unit: "Larbâa", name: "Assistante de production", poste: "Assistante de production", mail: "production.assist@labo-nedjma.com", status: "Bloquée" },
+    { unit: "Larbâa", name: "Assistante de production", poste: "Assistante de production", mail: "production.assist2@labo-nedjma.com", status: "Bloquée" },
+    { unit: "Larbâa", name: "Assistante de production", poste: "Assistante de production", mail: "production.assist3@labo-nedjma.com", status: "Bloquée" },
+    { unit: "Larbâa", name: "Assistante de production", poste: "Assistante de production", mail: "production.assist4@labo-nedjma.com", status: "Bloquée" },
+    { unit: "Larbâa", name: "Assistante de production", poste: "Assistante de production", mail: "production.assist5@labo-nedjma.com", status: "Bloquée" },
     { unit: "Larbâa", name: "Aicha MEZIANE", poste: "Assistante Administrative", mail: "meziane.aicha@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "Mohamed TIROUDA", poste: "RES DÉV DES RESSOURCES HUMAINES", mail: "tirouda.mohamed@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "Meroua GUELLIL", poste: "assistant production", mail: "guellil.meroua@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "Khedoudja ABBAS", poste: "ASSISTANT MGX", mail: "abbas.khedoudja@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "Assistant HSE", poste: "Assistant HSE", mail: "assistant.hse@labo-nedjma.com", status: "Bloquée" },
-    { unit: "Larbâa", name: "Assistant de planification", poste: "Assistant de planification", mail: "planification.assist@labo-nedjma.com", status: "Active" },
+    { unit: "Larbâa", name: "Assistant de planification", poste: "Assistant de planification", mail: "planification.assist@labo-nedjma.com", status: "Bloquée" },
     { unit: "Larbâa", name: "Ahmed MEGHARBI", poste: "ANALYSTE PHYSICO CHIMIE", mail: "megharbi.ahmed@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "Nadia HARRAG", poste: "ANALYSTE PHYSICO CHIMIE", mail: "harrag.nadia@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "Abdeldjalil BENMOUSSA", poste: "Analyste", mail: "analyste@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "Oussama MAGNOUCHE", poste: "Adjoint Directeur Général", mail: "oussama.magnouche@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "Anfel KACI", poste: "Assistante de production", mail: "kaci.anfel@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "Nadia BENAMMAR", poste: "Chimiste Préparation", mail: "labo-prepa@labo-nedjma.com", status: "Bloquée" },
-    { unit: "Larbâa", name: "Nesrine BOURAS", poste: "CHEMISTE", mail: "bouras.nesrine@labo-nedjma.com", status: "Active" },
+    { unit: "Larbâa", name: "Nesrine BOURAS", poste: "Microbiologiste - Contrôle de Qualité", mail: "bouras.nesrine@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "HAMADACHE FATMAZOHRA", poste: "CONTROLEUR DE GESTION", mail: "hamadache.fatmazohra@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "BEDJAOUI MEHNIA", poste: "ANALYSTE DE PRODUCTION", mail: "bedjaoui.mehnia@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "BOUCHLOUKH ZAKARIA", poste: "ORDONONCEUR DE PRODUCTION", mail: "bouchloukh.zakaria@labo-nedjma.com", status: "Active" },
@@ -221,7 +221,7 @@ let companyEmails = [
     { unit: "Oued Smar", name: "KHELIFATI LOTFI", poste: "Superviseur Ouest 3", mail: "superviseur.zone-ouest3@labo-nedjma.com", status: "Active" },
     { unit: "Oued Smar", name: "ALI MOHAMED CHERIF", poste: "Superviseur Ouest 2", mail: "superviseur.zone-ouest2@labo-nedjma.com", status: "Active" },
     { unit: "Oued Smar", name: "HIMEUR ADEM", poste: "Superviseur Est 3", mail: "himeur.adem@labo-nedjma.com", status: "Active" },
-    { unit: "Oued Smar", name: "BOUHADMA TOUFIK", poste: "Chef de Parc", mail: "bouhadma.toufik@labo-nedjma.com", status: "Active" },
+    { unit: "Oued Smar", name: "BOUHADMA TOUFIK", poste: "Chef de Parc", mail: "bouhadma.toufik@labo-nedjma.com", status: "Bloquée" },
 
     // Rahmania Unit
     { unit: "Rahmania", name: "-", poste: "GDS", mail: "gds.rahmania@labo-nedjma.com", status: "Active" },
@@ -246,7 +246,16 @@ let companyEmails = [
     { unit: "Oued Smar", name: "Amine AITEUR", poste: "Manager régional centre", mail: "aiteur.amine@labo-nedjma.com", status: "Active" },
     { unit: "Autres Unités", name: "LATAOUI ABDENNOUR", poste: "Superviseur des ventes - Centre", mail: "lataoui.abdennour@labo-nedjma.com", status: "Active" },
     { unit: "El Oued", name: "-", poste: "Assistante de production El Oued", mail: "eloued.production.assist@labo-nedjma.com", status: "Active" },
+    { unit: "Larbâa", name: "Mebarek Mohamed Lotfi", poste: "GDS", mail: "mebarek.mohamedlotfi@labo-nedjma.com", status: "Active" },
 ];
+
+// Data Sanitization: Remove names for blocked emails
+companyEmails = companyEmails.map(e => {
+    if (e.status === 'Bloquée') {
+        return { ...e, name: "-" };
+    }
+    return e;
+});
 
 // =============================================
 // DOM REFERENCES
