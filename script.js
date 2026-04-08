@@ -3,6 +3,12 @@
 // Professional Dashboard Script
 // ================================================
 
+(function initEmailJS() {
+    if (typeof emailjs !== 'undefined') {
+        emailjs.init("NZzp8VaAhdhkS_mlV");
+    }
+})();
+
 // =============================================
 // SPLASH SCREEN — Premium v3.0
 // =============================================
@@ -282,7 +288,8 @@ const pageTitles = {
     directory: 'RÉPERTOIRE <span class="accent">EMAILS</span>',
     stats: 'UNITÉS & <span class="accent">STATISTIQUES</span>',
     tools: 'RESSOURCES & <span class="accent">OUTILS</span>',
-    database: 'BASE DE <span class="accent">DONNÉES</span>'
+    database: 'BASE DE <span class="accent">DONNÉES</span>',
+    contact: 'CONTACT <span class="accent">SUPPORT</span>'
 };
 
 function navigateTo(page) {
@@ -337,6 +344,8 @@ function navigateTo(page) {
         renderUnitStats();
     } else if (page === 'database') {
         renderArchiveLog();
+    } else if (page === 'contact') {
+        initContactForm();
     }
 
     // Close mobile sidebar
@@ -610,7 +619,24 @@ searchInput.addEventListener('input', (e) => {
     renderEmails(filtered);
     renderRecent(filtered);
     updateDirectoryStats(filtered);
+    applyDirectoryTheme(term);
 });
+
+function applyDirectoryTheme(term) {
+    const page = document.getElementById('pageDirectory');
+    if (!page) return;
+
+    // Remove old themes
+    page.classList.remove('theme-douera', 'theme-el-oued', 'theme-larba', 'theme-oued-smar', 'theme-rahmania', 'theme-autres');
+
+    const t = term.toLowerCase();
+    if (t.includes('douera')) page.classList.add('theme-douera');
+    else if (t.includes('oued') && !t.includes('smar')) page.classList.add('theme-el-oued');
+    else if (t.includes('larb')) page.classList.add('theme-larba');
+    else if (t.includes('smar')) page.classList.add('theme-oued-smar');
+    else if (t.includes('rahman')) page.classList.add('theme-rahmania');
+    else if (t.includes('autre')) page.classList.add('theme-autres');
+}
 
 // =============================================
 // FILTER SYSTEM
@@ -791,6 +817,7 @@ function viewUnitDetails(unit) {
     navigateTo('directory');
     searchInput.value = unit;
     searchInput.dispatchEvent(new Event('input'));
+    applyDirectoryTheme(unit);
 }
 
 // =============================================
@@ -954,6 +981,77 @@ function copyConfig(value) {
         showCopyNotification('✅ Copié avec succès: ' + value);
     }).catch(() => {
         showCopyNotification('❌ Erreur de copie — veuillez copier manuellement');
+    });
+}
+
+// =============================================
+// CONTACT FORM HANDLER (EmailJS)
+// =============================================
+function initContactForm() {
+    const form = document.getElementById('contactForm');
+    const statusEl = document.getElementById('contactStatus');
+    const submitBtn = document.getElementById('contactSubmitBtn');
+    const submitText = document.getElementById('submitText');
+
+    if (!form || form.dataset.init) return;
+    form.dataset.init = 'true';
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // 1. UI Loading State
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.7';
+        submitText.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+        statusEl.className = 'form-status hidden';
+
+        // 2. Prepare Data (Matching User Schema)
+        const templateParams = {
+            name: document.getElementById('contactName').value,
+            email: document.getElementById('contactEmail').value,
+            subject: document.getElementById('contactSubject').value,
+            message: document.getElementById('contactMessage').value
+        };
+
+        // Ensure initialization
+        if (typeof emailjs !== 'undefined') {
+            emailjs.init("NZzp8VaAhdhkS_mlV");
+        }
+
+        // 3. Send via EmailJS
+        emailjs.send('service_vjznpgi', 'template_648u6p9', templateParams)
+            .then(function (response) {
+                console.log('SUCCESS!', response.status, response.text);
+
+                // Success feedback
+                statusEl.innerHTML = '<i class="fas fa-check-circle"></i> Votre message a été envoyé avec succès au service support !';
+                statusEl.className = 'form-status success';
+
+                // Clear Form
+                form.reset();
+
+                // Reset Button
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+                submitText.innerText = 'Envoyer la demande';
+
+                // Hide success message after 6 seconds
+                setTimeout(() => {
+                    statusEl.className = 'form-status hidden';
+                }, 6000);
+
+            }, function (error) {
+                console.error('FAILED...', error);
+
+                // Error feedback
+                statusEl.innerHTML = '<i class="fas fa-triangle-exclamation"></i> Échec de l\'envoi (' + error.status + '). Vérifiez vos identifiants EmailJS ou votre connexion.';
+                statusEl.className = 'form-status error';
+
+                // Reset Button
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+                submitText.innerText = 'Réessayer l\'envoi';
+            });
     });
 }
 
@@ -1154,3 +1252,48 @@ async function executeExcelExport(btn, originalText) {
         btn.style.pointerEvents = 'all';
     }
 }
+
+// =============================================
+// THEME MANAGEMENT — Dark Mode Switcher
+// =============================================
+function toggleTheme() {
+    const html = document.documentElement;
+    const themeBtn = document.getElementById('themeToggle');
+    const icon = themeBtn ? themeBtn.querySelector('i') : null;
+
+    if (html.classList.contains('dark-mode')) {
+        html.classList.remove('dark-mode');
+        localStorage.setItem('labo-theme', 'light');
+        if (icon) {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        }
+    } else {
+        html.classList.add('dark-mode');
+        localStorage.setItem('labo-theme', 'dark');
+        if (icon) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    }
+}
+
+// Initialize Theme on Load
+(function initTheme() {
+    const savedTheme = localStorage.getItem('labo-theme');
+    const html = document.documentElement;
+
+    if (savedTheme === 'dark') {
+        html.classList.add('dark-mode');
+        // We'll update binary icon state after DOM content loads to ensure the button exists
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const themeBtn = document.getElementById('themeToggle');
+        const icon = themeBtn ? themeBtn.querySelector('i') : null;
+        if (savedTheme === 'dark' && icon) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    });
+})();
