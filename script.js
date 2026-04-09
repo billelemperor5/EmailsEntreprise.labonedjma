@@ -194,7 +194,7 @@ let companyEmails = [
     { unit: "Oued Smar", name: "Abdenour OTMANI", poste: "Responsable du stock", mail: "otmani.abdennour@labo-nedjma.com", status: "Active" },
     { unit: "Oued Smar", name: "Darine TERCHI", poste: "Administrateur des ventes", mail: "terchi.darinelilia@labo-nedjma.com", status: "Active" },
     { unit: "Oued Smar", name: "Hania KHATIR", poste: "Administrateur des ventes", mail: "khatir.hania@labo-nedjma.com", status: "Active" },
-    { unit: "Oued Smar", name: "Houari MAHDJOUB", poste: "Responsable MGX", mail: "mahdjoub.houari@labo-nedjma.com", status: "Active" },
+    { unit: "Oued Smar", name: "Houari MAHDJOUB", poste: "Responsable MGX", mail: "mahdjoub.houari@labo-nedjma.com", status: "Bloquée" },
     { unit: "Oued Smar", name: "Meriem BELAMINE", poste: "Assistante administrative", mail: "belamine.meriemimane@labo-nedjma.com", status: "Active" },
     { unit: "Oued Smar", name: "Meriem MEHENNI", poste: "Responsable Facturation", mail: "mehenni.meriem@labo-nedjma.com", status: "Active" },
     { unit: "Oued Smar", name: "Mouatez GUEMARI", poste: "Directeur Général", mail: "guemari.mouatez@labo-nedjma.com", status: "Active" },
