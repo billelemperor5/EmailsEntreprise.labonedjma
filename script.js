@@ -247,6 +247,7 @@ let companyEmails = [
     { unit: "Autres Unités", name: "LATAOUI ABDENNOUR", poste: "Superviseur des ventes - Centre", mail: "lataoui.abdennour@labo-nedjma.com", status: "Active" },
     { unit: "El Oued", name: "-", poste: "Assistante de production El Oued", mail: "eloued.production.assist@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "Mebarek Mohamed Lotfi", poste: "GDS", mail: "mebarek.mohamedlotfi@labo-nedjma.com", status: "Active" },
+    { unit: "Autres Unités", name: "BEKRAR CHIHEB", poste: "Superviseur des ventes", mail: "bekrar.chiheb@labo-nedjma.com", status: "Active" },
 ];
 
 // Data Sanitization: Remove names for blocked emails
