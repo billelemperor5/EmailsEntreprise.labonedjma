@@ -179,7 +179,7 @@ let companyEmails = [
     { unit: "Larbâa", name: "Nadia BENAMMAR", poste: "Chimiste Préparation", mail: "labo-prepa@labo-nedjma.com", status: "Bloquée" },
     { unit: "Larbâa", name: "Nesrine BOURAS", poste: "Microbiologiste - Contrôle de Qualité", mail: "bouras.nesrine@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "HAMADACHE FATMAZOHRA", poste: "CONTROLEUR DE GESTION", mail: "hamadache.fatmazohra@labo-nedjma.com", status: "Active" },
-    { unit: "Larbâa", name: "BEDJAOUI MEHNIA", poste: "ANALYSTE DE PRODUCTION", mail: "bedjaoui.mehnia@labo-nedjma.com", status: "Active" },
+    { unit: "Larbâa", name: "BEDJAOUI MEHNIA", poste: "ANALYSTE DE PRODUCTION", mail: "bedjaoui.mehnia@labo-nedjma.com", status: "Bloquée" },
     { unit: "Larbâa", name: "BOUCHLOUKH ZAKARIA", poste: "ORDONONCEUR DE PRODUCTION", mail: "bouchloukh.zakaria@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "BOUACHA SABRINA", poste: "ASSISTANTE DE PRODUCTION", mail: "bouacha.sabrina@labo-nedjma.com", status: "Active" },
     { unit: "Larbâa", name: "hechiche.lamia", poste: "Assistante administrative", mail: "hechiche.lamia@labo-nedjma.com", status: "Active" },
