@@ -6237,27 +6237,26 @@ html.dark-mode .mob-nav-center-ring {
     overflow: visible !important;
   }
 
-  /* ── Mobile Grid Optimization (Single Column for safety) ── */
-  @media (max-width: 480px) {
-    .stats-row, 
-    .module-grid {
-      grid-template-columns: 1fr !important;
-      gap: 15px !important;
-    }
-  }
-
+  /* ── Stat Cards ── */
   .stats-row {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    grid-template-columns: 1fr !important; /* Force 1 column on all mobile for safety */
+    gap: 15px;
     margin-bottom: 24px;
     overflow: visible !important;
   }
 
   .stat-card {
-    padding: 16px 14px;
-    gap: 10px;
+    padding: 18px 16px;
+    gap: 12px;
     border-radius: var(--radius-md);
     height: auto !important;
+  }
+
+  /* Emergency Splash Screen Fix */
+  .splash-screen.fade-out {
+    pointer-events: none !important;
+    z-index: -100 !important;
+    display: none !important; /* Immediate hide if browser supports it alongside transition */
   }
 
   .stat-card-icon {
