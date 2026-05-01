@@ -119,32 +119,37 @@ async function initSplashScreen() {
     }, perfLite ? 70 : 30);
 
     // FETCH CLOUD DATA
-    const dataLoaded = await fetchEmailsFromFirestore();
-    
-    // Complete progress to 100% once data is loaded
-    clearInterval(progressInterval);
-    pct = perfLite ? 80 : 90;
-    const finalInterval = setInterval(() => {
-        pct += perfLite ? 10 : 2;
-        if (pct > 100) pct = 100;
-        if (pctEl) pctEl.textContent = pct + '%';
-        if (progressFill) progressFill.style.width = pct + '%';
+    try {
+        const dataLoaded = await fetchEmailsFromFirestore();
         
-        if (pct >= 100) {
-            clearInterval(finalInterval);
-            if (statusText) statusText.textContent = 'Système prêt !';
+        // Complete progress to 100% once data is loaded
+        clearInterval(progressInterval);
+        pct = 100;
+        if (pctEl) pctEl.textContent = '100%';
+        if (progressFill) progressFill.style.width = '100%';
+        if (statusText) statusText.textContent = 'Système prêt !';
+        
+        // Proceed to App Initialization
+        initializeAppCore();
+    } catch (err) {
+        console.error("Splash Init Error:", err);
+        // Ensure app starts even if a module fails
+        initializeAppCore();
+    } finally {
+        // GUARANTEED REMOVAL
+        setTimeout(() => {
+            splash.classList.add('fade-out');
+            if (sidebar) sidebar.style.opacity = '1';
+            if (mainWrapper) mainWrapper.style.opacity = '1';
             
-            // Proceed to App Initialization
-            initializeAppCore();
-
+            // Absolute removal from DOM
             setTimeout(() => {
-                splash.classList.add('fade-out');
-                if (sidebar) sidebar.style.opacity = '1';
-                if (mainWrapper) mainWrapper.style.opacity = '1';
-                setTimeout(() => splash.remove(), perfLite ? 250 : 1000);
-            }, perfLite ? 120 : 600);
-        }
-    }, perfLite ? 25 : 20);
+                if (splash && splash.parentNode) {
+                    splash.parentNode.removeChild(splash);
+                }
+            }, 800);
+        }, 300);
+    }
 }
 
 // Global Core Initialization
