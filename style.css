@@ -6259,41 +6259,32 @@ html.dark-mode .mob-nav-center-ring {
     display: none !important; /* Immediate hide if browser supports it alongside transition */
   }
 
-  .stat-card-icon {
-    width: 42px;
-    height: 42px;
-    font-size: 1.1rem;
-    border-radius: 10px;
+  /* Chrome Mobile Rendering Stability Fixes */
+  .stat-card, 
+  .module-card, 
+  .page-section, 
+  .page-content {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+    image-rendering: -webkit-optimize-contrast;
   }
 
-  .stat-card-value { font-size: 1.6rem; }
-  .stat-card-label { font-size: 0.58rem; }
-
-  /* ── Module Grid ── */
+  /* Force vertical stacking to avoid Chrome's Grid calculation gaps */
+  .stats-row, 
   .module-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    overflow: visible !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
   }
 
-  .module-card {
-    padding: 16px;
-    gap: 10px;
-    border-radius: var(--radius-md);
-    height: auto !important;
-  }
-
-  /* Disable expensive effects on mobile to prevent "fractures" */
-  .bg-blob, 
-  body::before {
-    filter: none !important;
-    -webkit-filter: none !important;
-    backdrop-filter: none !important;
-    display: none !important; /* Completely hide for maximum performance */
-  }
-
-  body {
-    background: var(--bg-main) !important; /* Solid background is safer */
+  /* Emergency Splash Screen Fix for Chrome Cache */
+  .splash-screen {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
   }
 
   /* ── Directory Layout ── */
