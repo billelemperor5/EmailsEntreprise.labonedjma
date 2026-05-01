@@ -6211,22 +6211,53 @@ html.dark-mode .mob-nav-center-ring {
 
   .hero-stat-val { font-size: 1.1rem; }
 
-  /* ── Content Section ── */
-  .content-section {
-    padding: 20px 14px 40px;
+  /* ── Content Section Stability Fix ── */
+  .page-content {
+    min-height: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    display: block !important;
   }
 
-  /* ── Stat Cards ── */
+  .page-section {
+    display: none;
+    overflow: visible !important;
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  .page-section.active {
+    display: block !important;
+  }
+
+  .content-section {
+    padding: 15px 12px 130px !important; /* Massive padding to clear bottom nav */
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
+  /* ── Mobile Grid Optimization (Single Column for safety) ── */
+  @media (max-width: 480px) {
+    .stats-row, 
+    .module-grid {
+      grid-template-columns: 1fr !important;
+      gap: 15px !important;
+    }
+  }
+
   .stats-row {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
     margin-bottom: 24px;
+    overflow: visible !important;
   }
 
   .stat-card {
     padding: 16px 14px;
     gap: 10px;
     border-radius: var(--radius-md);
+    height: auto !important;
   }
 
   .stat-card-icon {
@@ -6243,12 +6274,27 @@ html.dark-mode .mob-nav-center-ring {
   .module-grid {
     grid-template-columns: 1fr 1fr;
     gap: 12px;
+    overflow: visible !important;
   }
 
   .module-card {
     padding: 16px;
     gap: 10px;
     border-radius: var(--radius-md);
+    height: auto !important;
+  }
+
+  /* Disable expensive effects on mobile to prevent "fractures" */
+  .bg-blob, 
+  body::before {
+    filter: none !important;
+    -webkit-filter: none !important;
+    backdrop-filter: none !important;
+    display: none !important; /* Completely hide for maximum performance */
+  }
+
+  body {
+    background: var(--bg-main) !important; /* Solid background is safer */
   }
 
   /* ── Directory Layout ── */
