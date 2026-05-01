@@ -6683,9 +6683,33 @@ html.dark-mode .mob-nav-center-ring {
   .hero-section,
   .content-section,
   .page-section {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    isolation: isolate;
+    -webkit-transform: none !important;
+    transform: none !important;
+    isolation: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Critical Fix: Ensure content can expand and scroll */
+  html, body {
+    height: auto !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .page-content {
+    min-height: calc(100vh - var(--navbar-height)) !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .content-section {
+    flex: 1;
+    padding-bottom: 120px !important; /* Extra room for mobile bottom nav */
+  }
+
+  .bg-blob {
+    opacity: 0.15 !important; /* Reduce intensity on mobile to avoid haze */
   }
 }
 
