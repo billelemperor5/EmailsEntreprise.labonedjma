@@ -1,4 +1,4 @@
-const CACHE_NAME = 'labo-nedjma-pwa-v20';
+const CACHE_NAME = 'labo-nedjma-pwa-v5.3.0';
 const APP_SHELL = [
   './',
   './index.html',
