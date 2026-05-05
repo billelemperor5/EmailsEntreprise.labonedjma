@@ -534,14 +534,14 @@ function updateDashboardStats() {
     const pending = companyEmails.filter(e => e.status === 'En attente' && !e.isRequest).length;
     const units = [...new Set(companyEmails.map(e => e.unit))].length;
 
-    animateValue(dashTotalEmails, 0, total, 800);
-    animateValue(dashActiveEmails, 0, active, 900);
-    animateValue(dashBlockedEmails, 0, blocked, 1000);
+    animateValue(dashTotalEmails, total, 800);
+    animateValue(dashActiveEmails, active, 900);
+    animateValue(dashBlockedEmails, blocked, 1000);
     
     // We update pending count separately from Firestore pendingRequests
     updatePendingCount(); 
     
-    animateValue(dashUnitsCount, 0, units, 700);
+    animateValue(dashUnitsCount, units, 700);
 
     // Update banner badges dynamically
     const bannerTotalEls = document.getElementById('bannerTotalEmails');
@@ -562,8 +562,11 @@ function updateDashboardStats() {
     if (wrapUnits) wrapUnits.title = `${units} Unités`;
 }
 
-function animateValue(el, start, end, duration) {
+function animateValue(el, end, duration) {
     if (!el) return;
+    const start = parseInt(el.innerText) || 0;
+    if (start === end) return; // Don't animate if value hasn't changed
+
     let startTimestamp = null;
     const step = (timestamp) => {
         if (!startTimestamp) startTimestamp = timestamp;
@@ -3173,7 +3176,7 @@ async function updatePendingCount() {
         const pCount = document.getElementById('pendingRequestsCount');
         
         if (badge) {
-            animateValue(badge, parseInt(badge.innerText) || 0, totalPending, 500);
+            animateValue(badge, totalPending, 500);
         }
         if (pCount) pCount.textContent = requestCount;
         
