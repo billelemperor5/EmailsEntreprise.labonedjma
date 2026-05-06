@@ -192,6 +192,7 @@ function initializeAppCore() {
     initAuthSystem();
     initUnitManagement(); // Initialize unit CRUD listeners
     initSystemDateListener(); // Real-time date sync
+    checkSystemVersion(); // Check for updates
     if (typeof updateDashboardStats === 'function') updateDashboardStats();
     if (typeof renderEmailList === 'function') renderEmailList();
 }
@@ -1754,6 +1755,67 @@ async function executeExcelExport(btn, originalText) {
 }
 
 // =============================================
+// CACHE & VERSION MANAGEMENT
+// =============================================
+const CURRENT_VERSION = '5.5.1';
+
+/**
+ * Force clean all local data and caches to ensure latest version
+ */
+async function cleanCache() {
+    try {
+        const btn = document.querySelector('.btn-clean-cache');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Nettoyage...';
+        btn.disabled = true;
+
+        // 1. Clear Local Storage (except auth if needed, but here we clear all for fresh start)
+        localStorage.clear();
+
+        // 2. Clear all Caches (Service Worker)
+        if ('caches' in window) {
+            const keys = await caches.keys();
+            await Promise.all(keys.map(key => caches.delete(key)));
+        }
+
+        // 3. Unregister all service workers
+        if ('serviceWorker' in navigator) {
+            const registrations = await navigator.serviceWorker.getRegistrations();
+            await Promise.all(registrations.map(r => r.unregister()));
+        }
+
+        // 4. Show Success Modal
+        const successModal = document.getElementById('cacheSuccessModal');
+        if (successModal) successModal.classList.add('show');
+        
+        addSystemLog(`Nettoyage complet du cache (Force update v${CURRENT_VERSION})`);
+
+    } catch (e) {
+        console.error("Cache clean error:", e);
+        alert("Erreur lors du nettoyage du cache.");
+    }
+}
+
+/**
+ * Check if a new version is available on the cloud
+ */
+async function checkSystemVersion() {
+    try {
+        const doc = await db.collection('settings').doc('app').get();
+        if (doc.exists && doc.data().version) {
+            const cloudVersion = doc.data().version;
+            if (cloudVersion !== CURRENT_VERSION) {
+                console.info(`New version available: ${cloudVersion} (Current: ${CURRENT_VERSION})`);
+                // You could trigger a notification here or force reload
+                // For now, we just log it as the user usually reloads manually or via cleanCache
+            }
+        }
+    } catch (e) {
+        console.warn("Version check failed:", e);
+    }
+}
+
+// =============================================
 // THEME MANAGEMENT — Dark Mode Switcher
 // =============================================
 function toggleTheme() {
@@ -2205,6 +2267,7 @@ if (saveSystemDateBtn) {
 
             await db.collection('settings').doc('app').set({
                 lastUpdate: newDate,
+                version: CURRENT_VERSION, // Ensure version is synced
                 updatedBy: auth.currentUser.email,
                 clientTimestamp: new Date().toISOString()
             }, { merge: true });
