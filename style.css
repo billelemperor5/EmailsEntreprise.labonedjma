@@ -5932,7 +5932,8 @@ html.dark-mode .unit-name-text { color: white; }
   font-size: 1.1rem;
 }
 
-.input-with-icon-modern input {
+.input-with-icon-modern input,
+.modern-admin-form .input-with-icon-modern input[type="text"] {
   padding-left: 48px !important;
   width: 100%;
 }
